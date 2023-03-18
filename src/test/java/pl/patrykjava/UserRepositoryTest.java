@@ -11,6 +11,7 @@ import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.UserRepository;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 class UserRepositoryTest {
 
@@ -22,11 +23,10 @@ class UserRepositoryTest {
 
     @Test
     public void createUserTest() {
-        User user = User.builder()
-                .username("patryk47853")
-                .password("patryk47853")
-                .email("patryk47853@gmail.com")
-                .build();
+        User user = new User();
+        user.setUsername("patryk47853");
+        user.setPassword("patryk47853");
+        user.setEmail("patryk47853@test.com");
 
         User newUser = userRepository.save(user);
 
