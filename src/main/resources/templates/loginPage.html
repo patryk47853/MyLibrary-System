@@ -1,4 +1,5 @@
     <!DOCTYPE html>
+
     <html lang="en">
     <html xmlns:th="http://www.thymeleaf.org">
     <head>
@@ -37,7 +38,7 @@
 
     <div class="login">
 
-        <h1 class="text-center">Sign in</h1>
+        <h1 class="text-center">Sign In</h1>
         <h6 class="text-center">Don't have an account?<br><a th:href="@{/register}">Sign Up</a></h6>
 
         <form class="needs-validation">
@@ -56,9 +57,9 @@
             <h6 style="text-align: left"><a href="${pageContext.request.contextPath}/forgot-password">Forgot password?</a></h6>
             <div class="form-group form-check" style="text-align: left" >
                 <input class="form-check-input" type="checkbox" id="check">
-                <label class="form-check-label" for="check">Remember me</label>
+                <label class="form-check-label" for="check"><font size="4">Remember me</font></label>
             </div>
-            <input class="btn btn-success w-100" type="submit" value="Login">
+            <button>Login</button>
         </form>
     </div>
     </div>
