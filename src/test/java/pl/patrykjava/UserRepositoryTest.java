@@ -1,8 +1,10 @@
 package pl.patrykjava;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,14 +15,10 @@ import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(value = false)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserRepositoryTest {
 
     @Autowired
@@ -31,6 +29,7 @@ class UserRepositoryTest {
 
     @Test
     @Order(1)
+    @Rollback(value = false)
     public void createUserTest() {
 
         User user = new User();
@@ -55,7 +54,30 @@ class UserRepositoryTest {
 
         User user = userRepository.findByEmail(email);
 
-        Assertions.assertThat(user).isNotNull();
+        Assertions.assertThat(user.getUsername()).isEqualTo("patryk47853");
+    }
+
+    @Test
+    @Order(3)
+    public void findUserByUsernameTest() {
+
+        String username = "patryk47853";
+
+        User user = userRepository.findByUsername(username);
+
+        Assertions.assertThat(user.getEmail()).isEqualTo("patryk47853@test.com");
+    }
+
+    @Test
+    @Order(4)
+    @Rollback(value = false)
+    public void deleteUserByEmailTest() {
+
+        String email = "patryk47853@test.com";
+
+        User user = userRepository.findByEmail(email);
+
+        userRepository.delete(user);
     }
 
 }
