@@ -22,6 +22,12 @@ public class LoginController {
         return "loginPage";
     }
 
+    @PostMapping("/home")
+    public String home(){
+
+        return "home";
+    }
+
     @GetMapping("/register")
     public String registerUser(Model theModel) {
 
