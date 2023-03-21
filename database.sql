@@ -15,13 +15,14 @@ CREATE TABLE `users` (
     `password` varchar(64) NOT NULL,
     `email` varchar(64) NOT NULL,
     `active` boolean DEFAULT FALSE,
-    `first_name` varchar(64) DEFAULT NULL,
-    `last_name` varchar(64) DEFAULT NULL,
-    `phone_number` varchar(64) DEFAULT NULL,
-    `address` varchar(255) DEFAULT NULL,
-    `postal_code` varchar(64) DEFAULT NULL,
-    `city` varchar(64) DEFAULT NULL,
     `created_at` timestamp,
+
+	PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `roles` (
+	`id` int(6) NOT NULL AUTO_INCREMENT,
+    `name` varchar(64) NOT NULL,
 
 	PRIMARY KEY (`id`)
 )
