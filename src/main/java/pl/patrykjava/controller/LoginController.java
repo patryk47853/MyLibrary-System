@@ -3,19 +3,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.patrykjava.entity.User;
-import pl.patrykjava.repository.UserRepository;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-
+import pl.patrykjava.dto.UserRegisterDTO;
+import pl.patrykjava.service.UserService;
 
 @Controller
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/")
     public String loginPage() {
@@ -31,19 +28,16 @@ public class LoginController {
     @GetMapping("/register")
     public String registerUser(Model theModel) {
 
-        theModel.addAttribute("user", new User());
+        theModel.addAttribute("user", new UserRegisterDTO());
 
         return "registerUser";
     }
 
-    @PostMapping("/process_register")
-    public String processRegistration(User user) {
+    @PostMapping("/process_registration")
+    public String processRegistration(@ModelAttribute("user") UserRegisterDTO userRegisterDTO) {
 
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
-        user.setActive(false);
+        userService.save(userRegisterDTO);
 
-        userRepository.save(user);
-
-        return "registerSuccess";
+        return "redirect:/register?success";
     }
 }
