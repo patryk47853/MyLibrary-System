@@ -22,7 +22,7 @@ public class SecurityConfiguration {
     private UserService userService;
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -35,7 +35,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public ProviderManager authManagerBean(HttpSecurity security) throws Exception {
+    protected ProviderManager authManagerBean(HttpSecurity security) throws Exception {
         return (ProviderManager) security.getSharedObject(AuthenticationManagerBuilder.class)
                 .authenticationProvider(authProvider()).
                 build();
@@ -44,19 +44,20 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .requestMatchers("/").permitAll() // Allow access to login page
+        http.csrf().disable()
+                .authorizeRequests()
+                .requestMatchers("/register**").permitAll() // Allow access to login page
+                .requestMatchers("/home**").hasRole("USER")
                 .anyRequest().authenticated(); // Require authentication for all other requests
         http.formLogin()
-                .loginPage("/") // Set custom login page
+                .loginPage("/login") // Set custom login page
                 .defaultSuccessUrl("/home") // Redirect to dashboard after successful login
-                .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login?logout")
                 .permitAll();
 
         http.headers().frameOptions().sameOrigin();
