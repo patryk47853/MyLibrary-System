@@ -10,11 +10,14 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
+import pl.patrykjava.entity.Role;
 import pl.patrykjava.entity.User;
+import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -23,6 +26,9 @@ class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -36,7 +42,7 @@ class UserRepositoryTest {
         user.setUsername("patryk47853");
         user.setPassword("patryk47853");
         user.setEmail("patryk47853@test.com");
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1)));
+        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
 
         User newUser = userRepository.save(user);
 
@@ -48,6 +54,26 @@ class UserRepositoryTest {
 
     @Test
     @Order(2)
+    @Rollback(value = false)
+    public void createUserWithRoleTest() {
+
+        User user = new User();
+        user.setUsername("patryk35874");
+        user.setPassword("patryk35874");
+        user.setEmail("patryk35874@test.com");
+        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+
+        Role roleUser = roleRepository.findByName("USER");
+        user.addRole(roleUser);
+
+        User theUser = userRepository.save(user);
+
+
+        Assertions.assertThat(theUser.getRoles().size()).isEqualTo(1);
+    }
+
+    @Test
+    @Order(3)
     public void findUserByEmailTest() {
 
         String email = "patryk47853@test.com";
@@ -58,7 +84,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     public void findUserByUsernameTest() {
 
         String username = "patryk47853";
@@ -69,7 +95,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     @Rollback(value = false)
     public void deleteUserByEmailTest() {
 
