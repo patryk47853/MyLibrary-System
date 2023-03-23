@@ -15,11 +15,17 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping("/")
+    public String redirectToLoginPage() {
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
     public String loginPage() {
         return "loginPage";
     }
 
-    @PostMapping("/home")
+    @GetMapping("/home")
     public String home(){
 
         return "home";
