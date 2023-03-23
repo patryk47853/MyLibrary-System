@@ -11,6 +11,7 @@ import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.entity.Role;
 import pl.patrykjava.entity.Roles;
 import pl.patrykjava.entity.User;
+import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
@@ -26,6 +27,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -36,10 +40,11 @@ public class UserServiceImpl implements UserService {
     public User save(UserRegisterDTO userRegisterDTO) {
         User user = new User(userRegisterDTO.getUsername(),
                 userRegisterDTO.getEmail(),
-                passwordEncoder.encode(userRegisterDTO.getPassword()),
-                Arrays.asList(new Role(Roles.USER.toString())));
+                passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+        Role roleUser = roleRepository.findByName("USER");
+        user.addRole(roleUser);
 
         return userRepository.save(user);
     }

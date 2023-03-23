@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.Collection;
+import java.util.*;
 
 @Data
 @Getter
@@ -36,12 +36,13 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "active")
-    private boolean active;
+    @Column(name = "enabled")
+    private boolean enabled;
 
     @Column(name = "created_at")
     private Timestamp createdAt;
 
+    @Column(name = "roles")
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
@@ -52,6 +53,13 @@ public class User {
                     name = "roles_id", referencedColumnName = "id"
             )
     )
-    private Collection<Role> roles;
+    private Set<Role> roles = new HashSet<>();
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
+
+
 
 }

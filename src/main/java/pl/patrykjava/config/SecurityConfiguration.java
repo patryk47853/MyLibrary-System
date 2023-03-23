@@ -45,13 +45,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
-                .authorizeRequests()
-                .requestMatchers("/register**").permitAll() // Allow access to login page
-                .requestMatchers("/home**").hasRole("USER")
+                .authorizeHttpRequests()
+                .requestMatchers("/register", "/login", "/process_registration").permitAll()// Allow access to login page
+                .requestMatchers("/home").hasAnyAuthority("USER")
                 .anyRequest().authenticated(); // Require authentication for all other requests
         http.formLogin()
                 .loginPage("/login") // Set custom login page
-                .defaultSuccessUrl("/home") // Redirect to dashboard after successful login
+                .defaultSuccessUrl("/home", true) // Redirect to dashboard after successful login
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
@@ -67,7 +67,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/resources/**");
+        return (web) -> web.ignoring().requestMatchers("/css/**");
     }
 
 }
