@@ -2,9 +2,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MyLibrary - Home Page</title>
 </head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    li, a, button {
+        font-family: "Monsterreat", sans-serif;
+        font-weight: 900;
+        font-size: 16px;
+        color: #edf0f1;
+        text-decoration: none;
+        background-color: #24252A;
+    }
+
+    banner {
+        font-family: "Monsterreat", sans-serif;
+        font-weight: 900;
+        font-size: 24px;
+        color: antiquewhite;
+        text-decoration: none;
+        margin-right: 350px;
+        background-color: #24252A;
+    }
+
+    header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 15px 10%;
+        background-color: #24252A;
+    }
+
+    .logo {
+        cursor: pointer;
+        margin-right: auto;
+        background-color: #24252A;
+    }
+
+    .nav_links {
+        list-style: none;
+        background-color: #24252A;
+    }
+
+    .nav_links li {
+        display: inline-block;
+        padding: 0px 20px;
+        background-color: #24252A;
+    }
+
+    .nav_links li a{
+        transition: all 0.3s ease 0s;
+    }
+
+    .nav_links li a:hover{
+        color: #0088a9
+    }
+
+    button {
+        padding: 9px 25px;
+        background-color: rgba(0,136,169,1);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+    }
+
+    button:hover {
+        background-color: rgba(0,136,169,0.8);
+    }
+</style>
+
 <body>
-<h3>You've successfully logged in! Congrats :)</h3>
+<header>
+    <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60">
+    <banner>MyLibrary</banner>
+    <nav>
+        <ul class="nav_links">
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Library card</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </nav>
+    <a class="cta" href="#"><button>Logout</button></a>
+</header>
+
+
 </body>
+
+
 </html>
+
