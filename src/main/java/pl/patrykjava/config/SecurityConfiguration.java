@@ -41,11 +41,19 @@ public class SecurityConfiguration {
                 build();
     }
 
+    String[] staticResources  =  {
+            "/css/**",
+            "/images/**",
+            "/fonts/**",
+            "/scripts/**",
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
                 .authorizeHttpRequests()
+                .requestMatchers(staticResources).permitAll()
                 .requestMatchers("/register", "/login", "/process_registration").permitAll()// Allow access to login page
                 .requestMatchers("/home").hasAnyAuthority("USER")
                 .anyRequest().authenticated(); // Require authentication for all other requests
@@ -67,7 +75,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/css/**");
+        return (web) -> web.ignoring().requestMatchers("../images/**");
     }
 
 }
