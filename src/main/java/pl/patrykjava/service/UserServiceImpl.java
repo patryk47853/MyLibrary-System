@@ -9,14 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.entity.Role;
-import pl.patrykjava.entity.Roles;
 import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -43,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 passwordEncoder.encode(userRegisterDTO.getPassword()));
 
         user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+
         Role roleUser = roleRepository.findByName("USER");
         user.addRole(roleUser);
 

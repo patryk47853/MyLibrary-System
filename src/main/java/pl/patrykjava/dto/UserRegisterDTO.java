@@ -19,5 +19,5 @@ public class UserRegisterDTO {
 
     private Timestamp createdAt;
 
-    private boolean active;
+    private boolean enabled;
 }
