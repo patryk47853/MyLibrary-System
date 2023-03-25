@@ -54,28 +54,28 @@ public class SecurityConfiguration {
         http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(staticResources).permitAll()
-                .requestMatchers("/register", "/login", "/process_registration").permitAll()// Allow access to login page
+                .requestMatchers("/register", "/login", "/process_registration").permitAll()
                 .requestMatchers("/home").hasAnyAuthority("USER")
-                .anyRequest().authenticated(); // Require authentication for all other requests
+                .anyRequest().authenticated();
         http.formLogin()
-                .loginPage("/login") // Set custom login page
-                .defaultSuccessUrl("/home", true) // Redirect to dashboard after successful login
+                .loginPage("/login")
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
+                .deleteCookies("LIBRARY-COOKIE")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .rememberMe()
+                .key("uniqueAndSecret").tokenValiditySeconds(86400);
+
 
         http.headers().frameOptions().sameOrigin();
 
         return http.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("../images/**");
     }
 
 }

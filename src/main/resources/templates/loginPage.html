@@ -60,6 +60,11 @@
                 font-size: 20px;
             }
 
+            .alert-success {
+                font-size: 16px;
+                text-align: center;
+            }
+
             .login form .form-group {
                 margin-bottom: 12px;
             }
@@ -104,6 +109,12 @@
                 Invalid username or password
             </div>
         </div>
+        <div th:if="${param.logout}">
+            <br>
+            <div class="alert alert-success">
+                You have been logged out
+            </div>
+        </div>
 
         <form class="needs-validation" th:action="@{/login}" method="post" name="form">
             <div class="form-group is-valid" style="text-align: left">
@@ -114,15 +125,10 @@
                 <label class="form-label" th:name="password">Password</label>
                 <input class="form-control" name="password" type="password" id="password" required>
                 <hr>
-                <div th:if="${param.logout}">
-                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                        You have been logged out
-                    </div>
-                </div>
             </div>
             <h6 style="text-align: left"><a href="${pageContext.request.contextPath}/forgot-password">Forgot password?</a></h6>
             <div class="form-group form-check" style="text-align: left" >
-                <input class="form-check-input" type="checkbox" id="check">
+                <input class="form-check-input" type="checkbox" id="check" name="remember-me">
                 <label class="form-check-label" for="check"><font size="4">Remember me</font></label>
             </div>
             <button>Login</button>
