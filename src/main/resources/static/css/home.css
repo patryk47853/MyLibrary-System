@@ -90,9 +90,8 @@ button:hover {
 }
 .container {
     width: 100%;
-    background: rgb(2,0,36);
-    background: linear-gradient(188deg, rgba(2,0,36,1) 0%, rgba(239,1,7,1) 28%, rgba(133,107,156,1) 80%, rgba(0,212,255,1) 100%);
-    padding: 50px 40px;
+    background: rgb(192,188,254);
+    background: linear-gradient(227deg, rgba(192,188,254,1) 0%, rgba(239,1,7,1) 30%, rgba(123,69,170,1) 71%, rgba(0,212,255,1) 100%);padding: 50px 40px;
     box-shadow: 0 20px 65px rgba(87, 11, 16, 0.5);
     position: relative;
     border-radius: 8px;
@@ -101,17 +100,17 @@ button:hover {
     font-family: "Poppins", sans-serif;
 }
 quotebutton {
-    background-color: #ffffff;
+    background-color: yellow;
     border: none;
     padding: 15px 45px;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 600;
-    color: blueviolet;
+    color: black;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
 
 quotebutton:hover {
-    color: darkviolet;
+    color: dodgerblue;
 }
