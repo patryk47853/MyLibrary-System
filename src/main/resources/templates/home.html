@@ -5,99 +5,40 @@
     <title>MyLibrary - Home Page</title>
 </head>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
-
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    li, a, button {
-        font-family: "Monsterreat", sans-serif;
-        font-weight: 900;
-        font-size: 16px;
-        color: #edf0f1;
-        text-decoration: none;
-        background-color: #24252A;
-    }
-
-    banner {
-        font-family: "Monsterreat", sans-serif;
-        font-weight: 900;
-        font-size: 24px;
-        color: antiquewhite;
-        text-decoration: none;
-        margin-right: 350px;
-        background-color: #24252A;
-    }
-
-    header {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 15px 10%;
-        background-color: #24252A;
-    }
-
-    .logo {
-        cursor: pointer;
-        margin-right: auto;
-        background-color: #24252A;
-    }
-
-    .nav_links {
-        list-style: none;
-        background-color: #24252A;
-    }
-
-    .nav_links li {
-        display: inline-block;
-        padding: 0px 20px;
-        background-color: #24252A;
-    }
-
-    .nav_links li a{
-        transition: all 0.3s ease 0s;
-    }
-
-    .nav_links li a:hover{
-        color: #0088a9
-    }
-
-    button {
-        padding: 9px 25px;
-        background-color: rgba(0,136,169,1);
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: all 0.3s ease 0s;
-    }
-
-    button:hover {
-        background-color: rgba(0,136,169,0.8);
-    }
-</style>
+<!-- CSS stylesheet for home.html -->
+<link rel="stylesheet" href="/css/home.css">
 
 <body>
 <header>
-    <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60">
+    <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home">
     <banner>MyLibrary</banner>
     <nav>
         <ul class="nav_links">
-            <li><a href="#">Books</a></li>
-            <li><a href="#">Library card</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/books">Books</a></li>
+            <li><a href="/library-card">Library Card</a></li>
         </ul>
     </nav>
     <a class="cta" href=/logout><button>Logout</button></a>
 </header>
 
-
+<div class="wrapper">
+    <div class="container">
+        <h2>Quote of the day</h2>
+        <br>
+        <hr>
+        <br>
+        <p id="quote"></p>
+        <br>
+        <h3 id="author"></h3>
+        <br><br>
+        <quotebutton id="btn">Generate</quotebutton>
+    </div>
+</div>
 </body>
 
+<!-- Random Quote API JS -->
+<script src="/scripts/quote.js"></script>
 
 </html>
 
