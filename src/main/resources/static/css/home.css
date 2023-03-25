@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+li, a, button {
+    font-family: "Monsterreat", sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+    background-color: #000000;
+}
+
+banner {
+    font-family: "Monsterreat", sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: antiquewhite;
+    text-decoration: none;
+    margin-right: 350px;
+    background-color: #000000;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 10%;
+    background-color: #000000;
+    width: 100%;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    background-color: #000000;
+}
+
+.nav_links {
+    list-style: none;
+    background-color: #000000;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+    background-color: #000000;
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover{
+    color: yellow;
+}
+
+button {
+    padding: 9px 25px;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    color: deepskyblue;
+}
+
+.wrapper {
+    width: 400px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+.container {
+    width: 100%;
+    background: rgb(2,0,36);
+    background: linear-gradient(188deg, rgba(2,0,36,1) 0%, rgba(239,1,7,1) 28%, rgba(133,107,156,1) 80%, rgba(0,212,255,1) 100%);
+    padding: 50px 40px;
+    box-shadow: 0 20px 65px rgba(87, 11, 16, 0.5);
+    position: relative;
+    border-radius: 8px;
+    text-align: center;
+    color: #edf0f1;
+    font-family: "Poppins", sans-serif;
+}
+quotebutton {
+    background-color: #ffffff;
+    border: none;
+    padding: 15px 45px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: blueviolet;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+quotebutton:hover {
+    color: darkviolet;
+}
