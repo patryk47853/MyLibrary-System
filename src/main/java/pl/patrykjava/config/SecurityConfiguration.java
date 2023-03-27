@@ -44,7 +44,6 @@ public class SecurityConfiguration {
     String[] staticResources  =  {
             "/css/**",
             "/images/**",
-            "/fonts/**",
             "/scripts/**",
     };
 
