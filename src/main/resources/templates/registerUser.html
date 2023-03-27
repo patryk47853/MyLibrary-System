@@ -105,17 +105,17 @@
         <div class="form-group is-valid" style="text-align: left">
                 <label class="form-label" for="username">Username</label>
                 <input type="text" id="username" th:field="*{username}" class="form-control"
-                       required minlength="3" maxlength="16"/>
+                       required minlength="3" maxlength="16" placeholder="Enter your username"/>
             </div>
             <div class="form-group is-valid" style="text-align: left">
                 <label class="form-label" for="email">Email</label>
                 <input type="email" id="email" th:field="*{email}" class="form-control"
-                       required minlength="6" maxlength="30"/>
+                       required minlength="6" maxlength="30" placeholder="Enter your email"/>
             </div>
             <div class="form-group is-valid" style="text-align: left">
                 <label class="form-label" for="password">Password</label>
                 <input type="password" id="password" th:field="*{password}" class="form-control"
-                       required minlength="6" maxlength="30"/>
+                       required minlength="6" maxlength="30" placeholder="Enter your password"/>
             </div>
             <hr>
             <h6 style="text-align: left">Already have an account? <a th:href="@{/}">Sign In</a></h6>
