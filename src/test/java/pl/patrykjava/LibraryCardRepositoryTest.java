@@ -29,6 +29,7 @@ class LibraryCardRepositoryTest {
             LibraryCard libraryCard = new LibraryCard();
             libraryCard.setFirstName("Patryk");
             libraryCard.setLastName("Testowy");
+            libraryCard.setPhoneNumber("1412412");
             libraryCard.setCity("Warsaw");
             libraryCard.setPostalCode("01-341");
 
@@ -40,17 +41,17 @@ class LibraryCardRepositoryTest {
             Assertions.assertThat(myCards.size()).isEqualTo(1);
         }
 
-//        @Test
-//        @Order(2)
-//        public void testDeleteLibraryCard() {
-//            List<Role> roles = roleRepository.findAll();
-//
-//            for(Role role : roles) {
-//                roleRepository.delete(role);
-//            }
-//
-//            Assertions.assertThat(roles.size()).isEqualTo(0);
-//        }
-//    }
+        @Test
+        @Order(2)
+        public void testDeleteLibraryCards() {
+            List<LibraryCard> cards = libraryCardRepository.findAll();
 
-}
+            for(LibraryCard card : cards) {
+                libraryCardRepository.delete(card);
+            }
+
+            List<LibraryCard> allCards = libraryCardRepository.findAll();
+
+            Assertions.assertThat(allCards.size()).isEqualTo(0);
+        }
+    }
