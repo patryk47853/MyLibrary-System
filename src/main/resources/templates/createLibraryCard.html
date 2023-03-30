@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>MyLibrary - Library Card</title>
@@ -16,7 +17,7 @@
     <ul class="nav_links">
       <li><a href="/home">Home</a></li>
       <li><a href="/books">Books</a></li>
-      <li><a href="/library-card">Library Card</a></li>
+      <li><a href="/create-library-card">Library Card</a></li>
     </ul>
   </nav>
   <a class="cta" href=/logout><button>Logout</button></a>
@@ -26,35 +27,40 @@
   <div class="container">
   <div class="title">Library Card</div>
   <div class="content">
-    <form action="#">
+    <form th:action="@{/process-library-card}" method="post" th:object="${libraryCard}" >
       <div class="user-details">
         <div class="input-box">
           <span class="details">First name</span>
-          <input type="text" placeholder="Enter your first name" required>
+          <input type="text" th:field="*{firstName}" placeholder="Enter your first name" required>
         </div>
         <div class="input-box">
           <span class="details">Last name</span>
-          <input type="text" placeholder="Enter your last name" required>
+          <input type="text" th:field="*{lastName}" placeholder="Enter your last name" required>
         </div>
         <div class="input-box">
           <span class="details">Phone Number</span>
-          <input type="text" placeholder="Enter your phone number" required>
+          <input type="text" th:field="*{phoneNumber}" placeholder="Enter your phone number" required>
         </div>
         <div class="input-box">
           <span class="details">Address</span>
-          <input type="text" placeholder="Enter your address" required>
+          <input type="text" th:field="*{address}" placeholder="Enter your address" required>
         </div>
         <div class="input-box">
           <span class="details">Postal code</span>
-          <input type="text" placeholder="Enter your postal code" required>
+          <input type="text" th:field="*{postalCode}" placeholder="Enter your postal code" required>
         </div>
         <div class="input-box">
           <span class="details">City</span>
-          <input type="text" placeholder="Enter your city" required>
+          <input type="text" th:field="*{city}" placeholder="Enter your city" required>
         </div>
-        <div class="input-box">
-          <span class="details">Birthday</span>
-          <input type="date">
+<!--        <div class="input-box">-->
+<!--          <span class="details">Birthday</span>-->
+<!--          <input type="date" th:field="*{birthday}">-->
+<!--        </div>-->
+      </div>
+      <div th:if="${param.success}">
+        <div class="alert alert-success col-xs-offset-1 col-xs-10">
+          You have successfully signed up!
         </div>
       </div>
       <div class="button">
