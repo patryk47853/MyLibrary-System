@@ -42,7 +42,7 @@ class UserRepositoryTest {
         user.setUsername("patryk47853");
         user.setPassword("patryk47853");
         user.setEmail("patryk47853@test.com");
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
 
         User newUser = userRepository.save(user);
 
