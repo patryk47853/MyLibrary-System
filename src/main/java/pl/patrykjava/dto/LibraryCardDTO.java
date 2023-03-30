@@ -24,8 +24,6 @@ public class LibraryCardDTO {
 
     private String phoneNumber;
 
-    private Date birthday;
-
     private String address;
 
     private String postalCode;
