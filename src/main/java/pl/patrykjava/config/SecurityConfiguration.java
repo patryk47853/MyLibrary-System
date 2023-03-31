@@ -41,20 +41,16 @@ public class SecurityConfiguration {
                 build();
     }
 
-    String[] staticResources  =  {
-            "/css/**",
-            "/images/**",
-            "/scripts/**",
-    };
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
                 .authorizeHttpRequests()
+                .requestMatchers(login).permitAll()
                 .requestMatchers(staticResources).permitAll()
-                .requestMatchers("/register", "/login", "/process_registration").permitAll()
                 .requestMatchers("/home").hasAnyAuthority("USER")
+                .requestMatchers("/users").hasAnyAuthority("ADMIN")
+                .requestMatchers(libraryCard).permitAll()
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/login")
@@ -66,15 +62,23 @@ public class SecurityConfiguration {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll()
-                .and()
-                .rememberMe()
-                .key("uniqueAndSecret").tokenValiditySeconds(86400);
+                .permitAll();
 
 
         http.headers().frameOptions().sameOrigin();
 
         return http.build();
     }
+
+    String[] staticResources  =  {
+            "/css/**", "/images/**", "/scripts/**",
+    };
+    String[] login = {
+            "/register", "/login", "/process_registration", "/register?success"
+    };
+
+    String[] libraryCard = {
+            "/create-library-card?success", "/process-library-card"
+    };
 
 }

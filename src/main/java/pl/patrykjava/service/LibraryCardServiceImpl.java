@@ -5,10 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.patrykjava.dto.LibraryCardDTO;
-import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.entity.LibraryCard;
-import pl.patrykjava.entity.Role;
-import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.UserRepository;
 

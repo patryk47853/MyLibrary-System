@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
         user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
 
+        // add USER role during processing registration
         Role roleUser = roleRepository.findByName("USER");
         user.addRole(roleUser);
 
