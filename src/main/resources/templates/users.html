@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>MyLibrary - Users</title>
+</head>
+<body>
+<div sec:authorize="hasAuthority('USER')">Text visible to user.</div>
+<div sec:authorize="hasAuthority('ADMIN')">Text visible to admin.</div>
+<input type="text" name="email"
+       th:value="${currentUser.email}"/>
+</body>
+</html>
