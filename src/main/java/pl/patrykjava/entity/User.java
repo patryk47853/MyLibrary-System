@@ -14,7 +14,7 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -44,7 +44,7 @@ public class User {
 
     @Column(name = "roles")
     @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -58,7 +58,17 @@ public class User {
     public void addRole(Role role) {
         this.roles.add(role);
     }
-
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "library_card_id")
+    @JoinTable(
+            name = "users_cards",
+            joinColumns = @JoinColumn(
+                    name = "users_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "library_card", referencedColumnName = "id"
+            ))
+    private LibraryCard libraryCard;
 
 
 
