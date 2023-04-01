@@ -11,12 +11,15 @@ import pl.patrykjava.dto.LibraryCardDTO;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.Role;
 import pl.patrykjava.entity.User;
+import pl.patrykjava.entity.UsersRoles;
 import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
+import pl.patrykjava.repository.UsersRolesRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Service
 public class LibraryCardServiceImpl implements LibraryCardService {
@@ -29,6 +32,9 @@ public class LibraryCardServiceImpl implements LibraryCardService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    UsersRolesRepository usersRolesRepository;
 
     public LibraryCardServiceImpl(LibraryCardRepository libraryCardRepository) {
         this.libraryCardRepository = libraryCardRepository;
@@ -58,7 +64,12 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         libraryCard.setUser(user);
         user.setLibraryCard(libraryCard);
 
-        // If user got the library card, he should become reader and have access to the books
+        // Delete 'User' role --> user becomes 'Reader'
+        UsersRoles usersRoles = new UsersRoles(user.getId(), 1);
+        usersRolesRepository.delete(usersRoles);
+
+
+        // If user got the library card, he should become 'Reader' and have access to the books
         Role roleReader = roleRepository.findByName("READER");
         user.addRole(roleReader);
 
