@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(login).permitAll()
                 .requestMatchers(staticResources).permitAll()
-                .requestMatchers("/home").hasAnyAuthority("USER")
+                .requestMatchers("/home").hasAnyAuthority("USER", "READER")
                 .requestMatchers("/users").hasAnyAuthority("ADMIN")
                 .requestMatchers(libraryCard).permitAll()
                 .anyRequest().authenticated();

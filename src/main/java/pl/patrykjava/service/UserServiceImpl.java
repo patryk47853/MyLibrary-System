@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
                 userRegisterDTO.getEmail(),
                 passwordEncoder.encode(userRegisterDTO.getPassword()));
 
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
 
         // add USER role during processing registration
         Role roleUser = roleRepository.findByName("USER");
