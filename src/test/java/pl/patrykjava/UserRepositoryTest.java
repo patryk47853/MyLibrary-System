@@ -74,6 +74,17 @@ class UserRepositoryTest {
 
     @Test
     @Order(3)
+    public void addRoleToExistingUser() {
+
+       User user = userRepository.findByUsername("patryk2136");
+       Role roleReader = roleRepository.findByName("READER");
+       user.addRole(roleReader);
+
+       userRepository.save(user);
+    }
+
+    @Test
+    @Order(4)
     public void findUserByEmailTest() {
 
         String email = "patryk47853@test.com";
@@ -84,7 +95,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void findUserByUsernameTest() {
 
         String username = "patryk47853";
@@ -95,7 +106,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     @Rollback(value = false)
     public void deleteUserByEmailTest() {
 
