@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "library_card")
+@Table(name = "library_cards")
 public class LibraryCard {
 
 
@@ -56,6 +56,10 @@ public class LibraryCard {
 
     @Column(name = "created_at")
     private Timestamp createdAt;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 //    @OneToMany(mappedBy="user",
 //            fetch = FetchType.LAZY,

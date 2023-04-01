@@ -58,18 +58,9 @@ public class User{
     public void addRole(Role role) {
         this.roles.add(role);
     }
+
     @OneToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "library_card_id")
-    @JoinTable(
-            name = "users_cards",
-            joinColumns = @JoinColumn(
-                    name = "users_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "library_card", referencedColumnName = "id"
-            ))
+            cascade =  CascadeType.ALL,
+            mappedBy = "user")
     private LibraryCard libraryCard;
-
-
-
 }
