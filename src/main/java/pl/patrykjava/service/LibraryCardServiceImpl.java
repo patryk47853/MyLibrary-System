@@ -1,12 +1,18 @@
 package pl.patrykjava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.patrykjava.dto.LibraryCardDTO;
 import pl.patrykjava.entity.LibraryCard;
+import pl.patrykjava.entity.Role;
+import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
+import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
@@ -21,12 +27,25 @@ public class LibraryCardServiceImpl implements LibraryCardService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
     public LibraryCardServiceImpl(LibraryCardRepository libraryCardRepository) {
         this.libraryCardRepository = libraryCardRepository;
     }
 
     @Override
     public LibraryCard save(LibraryCardDTO libraryCardDTO) {
+
+        // Get the authentication object for the current user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String username = userDetails.getUsername();
+
+        // We should save library card to existing user
+        User user = userRepository.findByUsername(username);
+
         LibraryCard libraryCard = new LibraryCard(libraryCardDTO.getFirstName(),
                 libraryCardDTO.getLastName(),
                 libraryCardDTO.getPhoneNumber(),
@@ -36,7 +55,20 @@ public class LibraryCardServiceImpl implements LibraryCardService {
 
         libraryCard.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
 
-        return libraryCardRepository.save(libraryCard);
+        libraryCard.setUser(user);
+        user.setLibraryCard(libraryCard);
+
+        // If user got the library card, he should become reader and have access to the books
+        Role roleReader = roleRepository.findByName("READER");
+        user.addRole(roleReader);
+
+        userRepository.save(user);
+
+        return libraryCard;
+    }
+
+    private void addRoleAndCard(LibraryCard libraryCard, RoleRepository roleRepository, @AuthenticationPrincipal UserDetails currentUser) {
+
     }
 
     @Override
