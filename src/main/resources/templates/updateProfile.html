@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8">
+    <title>MyLibrary - Profile</title>
+  </head>
+
+  <!-- CSS stylesheet for home.html -->
+  <link rel="stylesheet" href="/css/librarycard.css">
+
+<body>
+<header>
+  <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home">
+  <banner>MyLibrary</banner>
+  <nav>
+    <ul class="nav_links">
+      <li><a href="/home">Home</a></li>
+      <li sec:authorize="hasAuthority('ADMIN')"><a href="/users">Users</a></li>
+      <li sec:authorize="hasAuthority('READER')"><a href="/books">Books</a></li>
+      <li sec:authorize="hasAuthority('READER')"><a href="/profile">Profile</a></li>
+      <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Library Card</a>
+    </ul>
+  </nav>
+  <a class="cta" href=/logout><button>Logout</button></a>
+</header>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="title"><span sec:authentication="name"></span>'s Library Card</div>
+    <div class="content">
+      <form th:action="@{/update-profile}" method="post" th:object="${libraryCard}" >
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">First name</span>
+            <input type="text" name="email" th:value="${currentUser.firstName}" />
+          </div>
+          <div class="input-box">
+            <span class="details">Last name</span>
+            <input type="text" name="email" th:value="${currentUser.lastName}" />
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" name="email" th:value="${currentUser.phoneNumber}" />
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" name="email" th:value="${currentUser.address}" />
+          </div>
+          <div class="input-box">
+            <span class="details">Postal code</span>
+            <input type="text" name="email" th:value="${currentUser.postalCode}" />
+          </div>
+          <div class="input-box">
+            <span class="details">City</span>
+            <input type="text" name="email" th:value="${currentUser.city}" />
+          </div>
+          <!--        <div class="input-box">-->
+          <!--          <span class="details">Birthday</span>-->
+          <!--          <input type="date" th:field="*{birthday}">-->
+          <!--        </div>-->
+          <a class="cta" href=/process-update-profile><button>Save</button></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+
+</html>
+
