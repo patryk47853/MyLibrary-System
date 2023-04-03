@@ -24,7 +24,7 @@ public class RoleRepositoryTest {
 
     @Test
     @Order(1)
-    public void testCreateRoles() {
+    public void createRolesTest() {
         Role user = new Role("USER");
         Role librarian = new Role("LIBRARIAN");
         Role admin = new Role("ADMIN");
@@ -38,7 +38,7 @@ public class RoleRepositoryTest {
 
     @Test
     @Order(2)
-    public void testDeleteRoles() {
+    public void deleteRolesTest() {
         List<Role> roles = roleRepository.findAll();
 
         for(Role role : roles) {
@@ -46,5 +46,16 @@ public class RoleRepositoryTest {
         }
 
         Assertions.assertThat(roles.size()).isEqualTo(0);
+    }
+
+    @Test
+    @Order(3)
+    public void findRoleTest() {
+
+        Role shouldBeUser = roleRepository.getReferenceById(1);
+
+        Role isUser = roleRepository.findByName("USER");
+
+        Assertions.assertThat(isUser.getName()).isEqualTo(shouldBeUser.getName());
     }
 }
