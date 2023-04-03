@@ -29,7 +29,7 @@ class LibraryCardRepositoryTest {
 
     @Test
     @Order(1)
-    public void testCreateLibraryCard() {
+    public void createLibraryCardTest() {
         LibraryCard libraryCard = new LibraryCard();
         libraryCard.setFirstName("Patryk");
         libraryCard.setLastName("Testowy");
@@ -47,7 +47,7 @@ class LibraryCardRepositoryTest {
 
     @Test
     @Order(2)
-    public void testDeleteLibraryCards() {
+    public void deleteLibraryCardsTest() {
         List<LibraryCard> cards = libraryCardRepository.findAll();
 
         for (LibraryCard card : cards) {
@@ -61,7 +61,7 @@ class LibraryCardRepositoryTest {
 
     @Test
     @Order(3)
-    public void testSetLibraryCardToUser() {
+    public void setLibraryCardToUserTest() {
         User user = new User("patryk2135", "to@dziala.com", "todziala");
 
         // Create a UserProfile instance

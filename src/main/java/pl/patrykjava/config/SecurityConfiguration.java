@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                 .requestMatchers(staticResources).permitAll()
                 .requestMatchers("/home").hasAnyAuthority("USER", "READER")
                 .requestMatchers("/users").hasAnyAuthority("ADMIN")
-                .requestMatchers(libraryCard).permitAll()
+                .requestMatchers(libraryCard).hasAnyAuthority("USER")
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/login")
@@ -78,7 +78,7 @@ public class SecurityConfiguration {
     };
 
     String[] libraryCard = {
-            "/create-library-card?success", "/process-library-card"
+            "/create-library-card/**", "/process-library-card"
     };
 
 }
