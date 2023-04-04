@@ -32,31 +32,31 @@
     <br>
     <a class="cta" href=/update-profile><button>Edit</button></a>
     <div class="content">
-      <form th:action="@{/profile}" method="get" th:object="${libraryCard}" >
+      <form th:action="@{/profile}" method="get" th:object="${user}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
-            <input type="text" name="email" th:value="${currentUser.firstName}" readonly/>
+            <input type="text" name="email" th:value="${user.firstName}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Last name</span>
-            <input type="text" name="email" th:value="${currentUser.lastName}" readonly/>
+            <input type="text" name="email" th:value="${user.lastName}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="email" th:value="${currentUser.phoneNumber}" readonly/>
+            <input type="text" name="email" th:value="${user.phoneNumber}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" name="email" th:value="${currentUser.address}" readonly/>
+            <input type="text" name="email" th:value="${user.address}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Postal code</span>
-            <input type="text" name="email" th:value="${currentUser.postalCode}" readonly/>
+            <input type="text" name="email" th:value="${user.postalCode}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">City</span>
-            <input type="text" name="email" th:value="${currentUser.city}" readonly/>
+            <input type="text" name="email" th:value="${user.city}" readonly/>
           </div>
           <!--        <div class="input-box">-->
           <!--          <span class="details">Birthday</span>-->

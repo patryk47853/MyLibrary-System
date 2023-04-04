@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.patrykjava.dto.LibraryCardDTO;
+import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
@@ -42,7 +44,7 @@ public class HomeController {
         return "createLibraryCard";
     }
 
-    @PostMapping("process-library-card")
+    @PostMapping("/process-library-card")
     public String createLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                     @AuthenticationPrincipal UserDetails currentUser) {
 
@@ -63,28 +65,45 @@ public class HomeController {
         User user = userRepository.findByUsername(currentUser.getUsername());
         LibraryCard libraryCard = user.getLibraryCard();
 
-        theModel.addAttribute("currentUser", libraryCard);
+        theModel.addAttribute("user", libraryCard);
 
         return "profile";
     }
 
     @GetMapping("/update-profile")
     public String updateProfile(Model theModel,
-                              @AuthenticationPrincipal UserDetails currentUser) {
+                                @AuthenticationPrincipal UserDetails currentUser) {
 
         User user = userRepository.findByUsername(currentUser.getUsername());
         LibraryCard libraryCard = user.getLibraryCard();
 
-        theModel.addAttribute("currentUser", libraryCard);
+        theModel.addAttribute("user", user);
 
         return "updateProfile";
     }
 
     @PostMapping("/process-update-profile")
-    public String processUpdateProfile() {
+    public String processUpdateProfile(@ModelAttribute("user") User myUser,
+                                       @AuthenticationPrincipal UserDetails currentUser) {
+
+        User user = userRepository.findByUsername(currentUser.getUsername());
+        LibraryCard thelibraryCard = myUser.getLibraryCard();
+
+        thelibraryCard.setFirstName(myUser.getLibraryCard().getFirstName());
+        thelibraryCard.setLastName(myUser.getLibraryCard().getLastName());
+        thelibraryCard.setPhoneNumber(myUser.getLibraryCard().getPhoneNumber());
+        thelibraryCard.setAddress(myUser.getLibraryCard().getAddress());
+        thelibraryCard.setPostalCode(myUser.getLibraryCard().getPostalCode());
+        thelibraryCard.setCity(myUser.getLibraryCard().getCity());
+
+        libraryCardRepository.save(thelibraryCard);
+
+        user.setLibraryCard(thelibraryCard);
+        userRepository.save(myUser);
 
         return "redirect:/update-profile?success";
     }
+
 
     @GetMapping("/users")
     public String users(Model theModel, @AuthenticationPrincipal UserDetails currentUser) {

@@ -30,31 +30,31 @@
   <div class="container">
     <div class="title"><span sec:authentication="name"></span>'s Library Card</div>
     <div class="content">
-      <form th:action="@{/update-profile}" method="post" th:object="${libraryCard}" >
+      <form th:action="@{/process-update-profile}" method="post" th:object="${user}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
-            <input type="text" name="email" th:value="${currentUser.firstName}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().firstName}" />
           </div>
           <div class="input-box">
             <span class="details">Last name</span>
-            <input type="text" name="email" th:value="${currentUser.lastName}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().lastName}" />
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="email" th:value="${currentUser.phoneNumber}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().phoneNumber}" />
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" name="email" th:value="${currentUser.address}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().address}" />
           </div>
           <div class="input-box">
             <span class="details">Postal code</span>
-            <input type="text" name="email" th:value="${currentUser.postalCode}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().postalCode}" />
           </div>
           <div class="input-box">
             <span class="details">City</span>
-            <input type="text" name="email" th:value="${currentUser.city}" />
+            <input type="text" name="email" th:value="${user.getLibraryCard().city}" />
           </div>
           <!--        <div class="input-box">-->
           <!--          <span class="details">Birthday</span>-->
