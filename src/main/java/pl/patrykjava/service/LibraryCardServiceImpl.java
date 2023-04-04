@@ -77,10 +77,6 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         return libraryCard;
     }
 
-    private void addRoleAndCard(LibraryCard libraryCard, RoleRepository roleRepository, @AuthenticationPrincipal UserDetails currentUser) {
-
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
