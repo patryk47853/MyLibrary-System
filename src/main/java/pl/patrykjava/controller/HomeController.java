@@ -77,29 +77,29 @@ public class HomeController {
         User user = userRepository.findByUsername(currentUser.getUsername());
         LibraryCard libraryCard = user.getLibraryCard();
 
-        theModel.addAttribute("user", user);
+        theModel.addAttribute("libraryCard", libraryCard);
 
         return "updateProfile";
     }
 
     @PostMapping("/process-update-profile")
-    public String processUpdateProfile(@ModelAttribute("user") User myUser,
+    public String processUpdateProfile(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                        @AuthenticationPrincipal UserDetails currentUser) {
 
         User user = userRepository.findByUsername(currentUser.getUsername());
-        LibraryCard thelibraryCard = myUser.getLibraryCard();
+        LibraryCard thelibraryCard = user.getLibraryCard();
 
-        thelibraryCard.setFirstName(myUser.getLibraryCard().getFirstName());
-        thelibraryCard.setLastName(myUser.getLibraryCard().getLastName());
-        thelibraryCard.setPhoneNumber(myUser.getLibraryCard().getPhoneNumber());
-        thelibraryCard.setAddress(myUser.getLibraryCard().getAddress());
-        thelibraryCard.setPostalCode(myUser.getLibraryCard().getPostalCode());
-        thelibraryCard.setCity(myUser.getLibraryCard().getCity());
+        thelibraryCard.setFirstName(libraryCardDTO.getFirstName());
+        thelibraryCard.setLastName(libraryCardDTO.getLastName());
+        thelibraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
+        thelibraryCard.setAddress(libraryCardDTO.getAddress());
+        thelibraryCard.setPostalCode(libraryCardDTO.getPostalCode());
+        thelibraryCard.setCity(libraryCardDTO.getCity());
 
         libraryCardRepository.save(thelibraryCard);
 
         user.setLibraryCard(thelibraryCard);
-        userRepository.save(myUser);
+        userRepository.save(user);
 
         return "redirect:/update-profile?success";
     }
