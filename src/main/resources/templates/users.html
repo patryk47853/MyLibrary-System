@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MyLibrary - Users</title>
+    <title>MyLibrary - Home Page</title>
 </head>
+
+<!-- CSS stylesheet for home.html -->
+<link rel="stylesheet" href="/css/users.css">
+
+
 <body>
-<div sec:authorize="hasAuthority('USER')">Text visible to user.</div>
-<div sec:authorize="hasAuthority('ADMIN')">Text visible to admin.</div>
-<input type="text" name="email"
-       th:value="${currentUser.email}"/>
+<header>
+    <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home">
+    <banner>MyLibrary</banner>
+    <nav>
+        <ul class="nav_links">
+            <li><a href="/home">Home</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')"><a href="/users">Users</a></li>
+            <li sec:authorize="hasAuthority('READER')"><a href="/books">Books</a></li>
+            <li sec:authorize="hasAuthority('READER')"><a href="/profile">Profile</a></li>
+            <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Library Card</a>
+        </ul>
+    </nav>
+    <a class="cta" href=/logout><button>Logout</button></a>
+</header>
+
+<div class="wrapper">
+    <div class="container">
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Profile</th>
+        <th>Library card</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td><a class="cta" href=/update-profile><button>Show</button></a></td>
+        <td><a class="cta" href=/update-profile><button>Show</button></a></td>
+    </tr>
+</table>
+        <br>
+        <div class="pagination">
+            <a href="?page=0">&laquo;</a>
+            <a href="?page=0">1</a>
+            <a href="?page=1">2</a>
+            <a href="?page=2">3</a>
+            <a href="?page=3">4</a>
+            <a href="?page=6">&raquo;</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
