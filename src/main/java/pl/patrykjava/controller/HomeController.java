@@ -1,6 +1,9 @@
 package pl.patrykjava.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +22,8 @@ import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.UserRepository;
 import pl.patrykjava.service.LibraryCardService;
 import pl.patrykjava.service.UserService;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -106,10 +111,14 @@ public class HomeController {
 
 
     @GetMapping("/users")
-    public String users(Model theModel, @AuthenticationPrincipal UserDetails currentUser) {
-        User user = userRepository.findByUsername(currentUser.getUsername());
-        theModel.addAttribute("currentUser", user);
+    public String users(@PageableDefault(size = 5) Pageable pageable, Model theModel) {
 
+        Page<User> userPage = userRepository.findAll(pageable);
+
+        theModel.addAttribute("users", userPage.getContent());
+        theModel.addAttribute("page", userPage);
         return "users";
     }
+
+
 }
