@@ -10,10 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.patrykjava.dto.LibraryCardDTO;
 import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.entity.LibraryCard;
@@ -107,6 +104,17 @@ public class HomeController {
         userRepository.save(user);
 
         return "redirect:/update-profile?success";
+    }
+
+    @GetMapping("/user/{id}")
+    public String showUserProfile(@PathVariable("id") int id, Model theModel) {
+
+        User user = userRepository.findUserById(id);
+        LibraryCard libraryCard = user.getLibraryCard();
+
+        theModel.addAttribute("user", libraryCard);
+
+        return "showUserProfile";
     }
 
 
