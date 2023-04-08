@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MyLibrary - Home Page</title>
+    <title>MyLibrary - Users</title>
 </head>
 
 <!-- CSS stylesheet for home.html -->
@@ -40,8 +40,8 @@
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.email}"></td>
-        <td><a class="cta" href=/account/{id}><button>Show</button></a></td>
-        <td><a class="cta" href=/user/{user.id}><button>Show</button></a></td>
+        <td><a th:href="@{/account/{id}(id=${user.id})}"><button>Show</button></a></td>
+        <td><a th:href="@{/user/{id}(id=${user.id})}"><button>Show</button></a></td>
     </tr>
 </table>
         <br>
