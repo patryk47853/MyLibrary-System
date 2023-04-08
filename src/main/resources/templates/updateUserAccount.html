@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>MyLibrary - Update profile</title>
+</head>
+
+<!-- CSS stylesheet for home.html -->
+<link rel="stylesheet" href="/css/librarycard.css">
+
+<body>
+<header>
+  <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home">
+  <banner>MyLibrary</banner>
+  <nav>
+    <ul class="nav_links">
+      <li><a href="/home">Home</a></li>
+      <li sec:authorize="hasAuthority('ADMIN')"><a href="/users">Users</a></li>
+      <li sec:authorize="hasAuthority('READER')"><a href="/books">Books</a></li>
+      <li sec:authorize="hasAuthority('READER')"><a href="/profile">Profile</a></li>
+      <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Library Card</a>
+    </ul>
+  </nav>
+  <a class="cta" href=/logout><button>Logout</button></a>
+</header>
+
+<div class="wrapper">
+  <div class="container">
+    <div class="title"><span th:text="${user.username}"></span>'s Library Card</div>
+    <div class="content">
+      <div th:if="${param.success}">
+        <div class="alert alert-success col-xs-offset-1 col-xs-10">
+          <br>
+          You have successfully changed <span th:text="${user.username}"></span>'s account details!
+        </div>
+      </div>
+      <form th:action="@{/process-update-user-account/{id}(id=${user.id})}" method="post" th:object="${user}" >
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" name="username" th:value="${user.username}" />
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" th:value="${user.email}" />
+          </div>
+        <button type="submit">Save</button>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+
+
+</html>
+
