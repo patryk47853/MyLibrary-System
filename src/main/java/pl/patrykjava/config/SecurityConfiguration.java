@@ -8,7 +8,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -48,8 +47,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(login).permitAll()
                 .requestMatchers(staticResources).permitAll()
+                .requestMatchers(profile).permitAll()
                 .requestMatchers("/home").hasAnyAuthority("USER", "READER")
-                .requestMatchers("/users").hasAnyAuthority("ADMIN")
+                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .requestMatchers(libraryCard).hasAnyAuthority("USER")
                 .anyRequest().authenticated();
         http.formLogin()
@@ -71,7 +71,7 @@ public class SecurityConfiguration {
     }
 
     String[] staticResources  =  {
-            "/css/**", "/images/**", "/scripts/**",
+            "/css/**", "/images/**", "/scripts/**"
     };
     String[] login = {
             "/register", "/login", "/process_registration", "/register?success"
@@ -79,6 +79,10 @@ public class SecurityConfiguration {
 
     String[] libraryCard = {
             "/create-library-card/**", "/process-library-card"
+    };
+
+    String[] profile  =  {
+            "/profile", "/update-profile", "/process-update-profile"
     };
 
 }
