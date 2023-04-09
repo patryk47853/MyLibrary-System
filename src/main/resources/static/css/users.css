@@ -24,7 +24,7 @@ banner {
     font-size: 24px;
     color: antiquewhite;
     text-decoration: none;
-    margin-right: 350px;
+    margin-right: auto;
     background-color: #000000;
 }
 
@@ -32,7 +32,7 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 15px 10%;
+    padding: 12px 10%;
     background-color: #000000;
     width: 100%;
 }

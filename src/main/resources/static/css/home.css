@@ -30,7 +30,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 10%;
+    padding: 12px 10%;
     background-color: #000000;
     width: 100%;
 }
@@ -90,8 +90,9 @@ button:hover {
 }
 .container {
     width: 100%;
-    background: rgb(192,188,254);
-    background: linear-gradient(227deg, rgba(192,188,254,1) 0%, rgba(239,1,7,1) 30%, rgba(123,69,170,1) 71%, rgba(0,212,255,1) 100%);padding: 50px 40px;
+    background-color: #42378f;
+    background-image: linear-gradient(315deg, #42378f 0%, #f53844 74%);
+    padding: 50px 40px;
     box-shadow: 0 20px 65px rgba(87, 11, 16, 0.5);
     position: relative;
     border-radius: 8px;
@@ -100,13 +101,13 @@ button:hover {
     font-family: "Poppins", sans-serif;
 }
 quotebutton {
-    background-color: yellow;
+    background-color: transparent;
     border: none;
     padding: 15px 45px;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 600;
-    color: black;
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }

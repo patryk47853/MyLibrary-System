@@ -12,12 +12,12 @@
 
 <body>
 <header>
-  <img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home">
-  <banner>MyLibrary</banner>
+  <a href="/home"><img class="logo" src="/images/book.svg" alt="logo" width="60" height="60" href="/home"></a>
+  <banner>&nbsp;&nbsp;MyLibrary</banner>
   <nav>
     <ul class="nav_links">
       <li><a href="/home">Home</a></li>
-      <li sec:authorize="hasAuthority('ADMIN')"><a href="/users">Users</a></li>
+      <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin/users">Users</a></li>
       <li sec:authorize="hasAuthority('READER')"><a href="/books">Books</a></li>
       <li sec:authorize="hasAuthority('READER')"><a href="/profile">Profile</a></li>
       <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Library Card</a>
