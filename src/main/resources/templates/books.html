@@ -1,10 +1,31 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>MyLibrary - books</title>
 </head>
 <body>
-<h3>Work in progress...</h3>
+<!-- CSS stylesheet for home.html -->
+<link rel="stylesheet" href="/css/home.css">
+<header th:replace="header :: header"></header>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="content">
+</div><h1>Search Results</h1>
+<form method="get" action="/books">
+    <label for="query">Search:</label>
+    <input type="text" id="query" name="query" th:value="${param.query}" />
+    <button type="submit">Search</button>
+</form>
+<hr />
+<div th:if="${books != null}">
+    <div th:each="book : ${books}">
+        <h2 th:text="${book.volumeInfo.title}" />
+        <p th:text="${book.volumeInfo.description}" />
+    </div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
