@@ -1,26 +1,32 @@
 package pl.patrykjava.controller;
 
+import com.google.api.services.books.Books;
+import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
-import java.io.IOException;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
+import com.google.api.services.books.model.Volumes;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.patrykjava.service.BookService;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+    @GetMapping("/search")
+    public List<Volume> searchBooks(@RequestParam String query) {
+        try {
+            Books books = new Books.Builder(new com.google.api.client.http.javanet.NetHttpTransport(), new com.google.api.client.json.jackson2.JacksonFactory(), null)
+                    .setApplicationName("MyLibrarySearch")
+                    .setGoogleClientRequestInitializer(new BooksRequestInitializer("GOOGLE.API.KEY"))
+                    .build();
 
-    @GetMapping("/books")
-    public String searchBooks(@RequestParam("query") String query, Model model)
-            throws IOException {
-        List<Volume> books = bookService.searchForBooks(query);
-        model.addAttribute("books", books);
-        return "books";
+            Volumes volumes = books.volumes().list(query).execute();
+
+            return volumes.getItems();
+        } catch (Exception e) {
+            System.err.println("Exception during API call: " + e);
+            return null;
+        }
     }
 }
