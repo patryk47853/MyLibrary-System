@@ -23,12 +23,6 @@ public class HomeController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/books")
-    public String books() {
-
-        return "books";
-    }
-
     @GetMapping("/create-library-card")
     public String libraryCard(Model theModel) {
 
