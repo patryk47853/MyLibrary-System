@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>MyLibrary - books</title>
+    <title>MyLibrary - Books</title>
+    <link rel="stylesheet" href="/css/users.css">
+
 </head>
 <body>
-<!-- CSS stylesheet for home.html -->
-<link rel="stylesheet" href="/css/home.css">
 <header th:replace="header :: header"></header>
-
 <div class="wrapper">
-    <div class="container">
-        <div class="content">
-</div><h1>Search Results</h1>
-<form method="get" action="/books">
-    <label for="query">Search:</label>
-    <input type="text" id="query" name="query" th:value="${param.query}" />
-    <button type="submit">Search</button>
-</form>
-<hr />
-<div th:if="${books != null}">
-    <div th:each="book : ${books}">
-        <h2 th:text="${book.volumeInfo.title}" />
-        <p th:text="${book.volumeInfo.description}" />
+    <div class="container mt-3">
+        <h2>Books Table</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Authors</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Use Thymeleaf to iterate through the list of books and display them in the table -->
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.authors}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Add pagination links using Thymeleaf -->
+        <div class="pagination">
+            <br>
+            <a th:href="@{/books(query=${query}, page=0)}">&laquo;</a>
+            <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
+               th:href="@{/books(query=${query}, page=${p})}"
+               th:text="${p+1}" th:class="${p==currentPage} ? active"></a>
+            <a th:href="@{/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
+        </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 </body>
 </html>
