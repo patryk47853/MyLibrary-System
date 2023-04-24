@@ -23,7 +23,7 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/account/{id}")
+    @GetMapping("/accounts/{id}")
     public String showUserAccount(@PathVariable("id") int id, Model theModel) {
 
         User user = userRepository.findUserById(id);
@@ -43,7 +43,7 @@ public class AdminController {
         return "updateUserAccount";
     }
 
-    @PostMapping("/process-update-user-account/{id}")
+    @PutMapping("/process-update-user-account/{id}")
     public String processUpdateUserAccount(@ModelAttribute("user") UserRegisterDTO userRegisterDTO,
                                            @PathVariable("id") int id) {
 
@@ -57,7 +57,7 @@ public class AdminController {
         return "redirect:/admin/update-user-account/{id}?success";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public String showUserProfile(@PathVariable("id") int id, Model theModel) {
 
         User user = userRepository.findUserById(id);
@@ -79,7 +79,7 @@ public class AdminController {
         return "updateUserProfile";
     }
 
-    @PostMapping("/process-update-user-profile/{id}")
+    @PutMapping("/process-update-user-profile/{id}")
     public String processUpdateUserProfile(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                            @PathVariable("id") int id) {
 
@@ -109,6 +109,7 @@ public class AdminController {
 
         theModel.addAttribute("users", userPage.getContent());
         theModel.addAttribute("page", userPage);
+
         return "users";
     }
 }

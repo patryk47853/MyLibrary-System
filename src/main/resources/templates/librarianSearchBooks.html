@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>MyLibrary - Books</title>
+    <title>MyLibrary - Librarian | Search Books</title>
     <link rel="stylesheet" href="/css/users.css">
 
 </head>
@@ -9,7 +9,7 @@
 <header th:replace="header :: header"></header>
 <div class="wrapper">
     <div class="container mt-3">
-        <h2>Books Table</h2>
+        <h2>Books found</h2>
         <table>
             <thead>
             <tr>
@@ -28,11 +28,11 @@
         <!-- Add pagination links using Thymeleaf -->
         <div class="pagination">
             <br>
-            <a th:href="@{/books(query=${query}, page=0)}">&laquo;</a>
+            <a th:href="@{/librarian/books(query=${query}, page=0)}">&laquo;</a>
             <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
-               th:href="@{/books(query=${query}, page=${p})}"
+               th:href="@{/librarian/books(query=${query}, page=${p})}"
                th:text="${p+1}" th:class="${p==currentPage} ? active"></a>
-            <a th:href="@{/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
+            <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
         </div>
     </div>
 </div>

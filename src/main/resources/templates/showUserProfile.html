@@ -17,7 +17,7 @@
   <div class="container">
     <div class="title"><span th:text="${libraryCard.getUser().username}"></span>'s Library Card</div>
     <div class="content">
-      <form th:action="@{/admin/user/}" method="get" th:object="${libraryCard}" >
+      <form th:action="@{/admin/users/}" method="get" th:object="${libraryCard}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>

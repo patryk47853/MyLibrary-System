@@ -34,11 +34,12 @@
         <br>
         <div class="pagination">
             <a href="?page=0">&laquo;</a>
-            <a href="?page=0">1</a>
-            <a href="?page=1">2</a>
-            <a href="?page=2">3</a>
-            <a href="?page=3">4</a>
-            <a href="?page=6">&raquo;</a>
+            <a href="?page=0" th:classappend="${page.number == 0} ? active : ''">1</a>
+            <a href="?page=1" th:classappend="${page.number == 1} ? active : ''">2</a>
+            <a href="?page=2" th:classappend="${page.number == 2} ? active : ''">3</a>
+            <a href="?page=3" th:classappend="${page.number == 3} ? active : ''">4</a>
+            <a href="?page=4" th:classappend="${page.number == 4} ? active : ''">5</a>
+            <a href="?page=4">&raquo;</a>
         </div>
     </div>
 </div>

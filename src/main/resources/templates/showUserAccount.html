@@ -17,7 +17,7 @@
   <div class="container">
     <div class="title"><span th:text="${user.username}"></span>'s Account Details</div>
     <div class="content">
-      <form th:action="@{/admin/account/}" method="get" th:object="${user}" >
+      <form th:action="@{/admin/accounts/}" method="get" th:object="${user}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">Username</span>
