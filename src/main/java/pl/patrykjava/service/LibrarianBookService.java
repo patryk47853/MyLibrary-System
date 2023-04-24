@@ -1,22 +1,19 @@
-package pl.patrykjava.controller;
+package pl.patrykjava.service;
 
 import com.google.api.services.books.Books;
 import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
+import com.google.api.services.books.model.Volumes;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.patrykjava.entity.Book;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.api.services.books.model.Volumes;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.patrykjava.entity.Book;
-
-@Controller
-public class BookController {
+@Service
+public class LibrarianBookService {
 
     @Value("${google.books.api.key}")
     private String apiKey;
@@ -48,19 +45,4 @@ public class BookController {
             return null;
         }
     }
-
-    @GetMapping("/books")
-    public String showSearchResults(@RequestParam("query") String query, @RequestParam(value = "page", defaultValue = "0") int page, Model model) {
-        Long startIndex = page * 6L;
-        List<Book> books = searchBooks(query, startIndex);
-        int totalRecords = 60; // assuming there are 60 books for the given query
-
-        model.addAttribute("books", books);
-        model.addAttribute("query", query);
-        model.addAttribute("totalPages", (int) Math.ceil(totalRecords / 6.0));
-        model.addAttribute("currentPage", page);
-
-        return "books";
-    }
-
 }
