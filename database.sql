@@ -56,6 +56,56 @@ CREATE TABLE `library_cards` (
   
   ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `books` (
+                        `id` int(6) NOT NULL AUTO_INCREMENT,
+                        `title` varchar(255) NOT NULL,
+                        `page_count` int(6) NOT NULL,
+                        `rating` decimal(3, 2) NOT NULL,
+                        `description` text NOT NULL,
+                        `image_link` varchar(255) NOT NULL,
+                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `authors` (
+                          `id` int(6) NOT NULL AUTO_INCREMENT,
+                          `name` varchar(255) NOT NULL,
+                          PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_authors` (
+                               `book_id` int(6) NOT NULL,
+                               `author_id` int(6) NOT NULL,
+                               PRIMARY KEY (`book_id`, `author_id`),
+                               KEY `book` (`book_id`),
+                               CONSTRAINT `FK_BOOK_AUTHOR_BOOK` FOREIGN KEY (`book_id`)
+                                   REFERENCES `book` (`id`)
+                                   ON DELETE CASCADE ON UPDATE NO ACTION,
+                               KEY `author` (`author_id`),
+                               CONSTRAINT `FK_BOOK_AUTHOR_AUTHOR` FOREIGN KEY (`author_id`)
+                                   REFERENCES `author` (`id`)
+                                   ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+CREATE TABLE `bookcategories` (
+                                `id` int(6) NOT NULL AUTO_INCREMENT,
+                                `name` varchar(255) NOT NULL,
+                                PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_bookcategories` (
+                                     `book_id` int(6) NOT NULL,
+                                     `bookcategory_id` int(6) NOT NULL,
+                                     PRIMARY KEY (`book_id`, `bookcategory_id`),
+                                     KEY `book` (`book_id`),
+                                     CONSTRAINT `FK_BOOK_BOOKCATEGORY_BOOK` FOREIGN KEY (`book_id`)
+                                         REFERENCES `book` (`id`)
+                                         ON DELETE CASCADE ON UPDATE NO ACTION,
+                                     KEY `bookcategory` (`bookcategory_id`),
+                                     CONSTRAINT `FK_BOOK_BOOKCATEGORY_BOOKCATEGORY` FOREIGN KEY (`bookcategory_id`)
+                                         REFERENCES `bookcategory` (`id`)
+                                         ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `roles` (`name`) VALUES
