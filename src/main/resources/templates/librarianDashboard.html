@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MyLibrary - Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Custom CSS stylesheet -->
+  <link rel="stylesheet" href="/css/users.css">
+
+</head>
+<body>
+<header th:replace="header :: header"></header>
+
+<div class="wrapper">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      <div class="list-group">
+        <a href="/librarian/dashboard" class="list-group-item active">
+          Dashboard
+        </a>
+        <a href="/librarian/books?query=Harry" class="list-group-item">
+          Search Books
+        </a>
+        <a href="/librarian/borrowed" class="list-group-item">
+          Search Borrowed Books
+        </a>
+        <a href="librarian/users" class="list-group-item">
+          Users
+        </a>
+      </div>
+    </div>
+    <div class="col-md-9 main-content">
+      <h1>Dashboard</h1>
+      <p>Welcome to your dashboard. From here you can manage your library's resources.</p>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
