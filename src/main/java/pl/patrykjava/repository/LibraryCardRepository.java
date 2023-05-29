@@ -9,7 +9,7 @@ import pl.patrykjava.entity.LibraryCard;
 @Repository
 public interface LibraryCardRepository extends JpaRepository<LibraryCard, Integer> {
 
-    @Query("SELECT c from LibraryCard c where c.firstName = ?1")
-    LibraryCard findByFirstName(String firstName);
+    @Query("SELECT c from LibraryCard c where c.phoneNumber = ?1")
+    LibraryCard findByPhoneNumber(String phoneNumber);
 
 }
