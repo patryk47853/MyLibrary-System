@@ -11,7 +11,6 @@ import java.util.Set;
 @Data
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -42,9 +41,6 @@ public class LibraryCard {
     @Column(name="phone_number")
     private String phoneNumber;
 
-//    @Column(name="birthday")
-//    private Date birthday;
-
     @Column(name="address")
     private String address;
 
@@ -60,9 +56,4 @@ public class LibraryCard {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-//    @OneToMany(mappedBy="user",
-//            fetch = FetchType.LAZY,
-//            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//    private Set<Reserved> reservedBooks;
 }

@@ -1,6 +1,5 @@
 package pl.patrykjava.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.ProviderManager;
@@ -17,8 +16,11 @@ import pl.patrykjava.service.UserService;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public SecurityConfiguration(UserService userService) {
+        this.userService = userService;
+    }
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
@@ -45,12 +47,13 @@ public class SecurityConfiguration {
 
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers(login).permitAll()
                 .requestMatchers(staticResources).permitAll()
+                .requestMatchers(login).permitAll()
                 .requestMatchers(profile).permitAll()
+                .requestMatchers(libraryCard).hasAnyAuthority("USER")
                 .requestMatchers("/home").hasAnyAuthority("USER", "READER")
                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                .requestMatchers(libraryCard).hasAnyAuthority("USER")
+                .requestMatchers("/librarian/**").hasAnyAuthority("ADMIN", "LIBRARIAN")
                 .anyRequest().authenticated();
         http.formLogin()
                 .loginPage("/login")
