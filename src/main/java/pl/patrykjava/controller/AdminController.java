@@ -30,7 +30,7 @@ public class AdminController {
 
         theModel.addAttribute("user", user);
 
-        return "showUserAccount";
+        return "admin/showUserAccount";
     }
 
     @GetMapping("/update-user-account/{id}")
@@ -40,7 +40,7 @@ public class AdminController {
 
         theModel.addAttribute("user", user);
 
-        return "updateUserAccount";
+        return "admin/updateUserAccount";
     }
 
     @PutMapping("/process-update-user-account/{id}")
@@ -65,7 +65,7 @@ public class AdminController {
 
         theModel.addAttribute("libraryCard", libraryCard);
 
-        return "showUserProfile";
+        return "admin/showLibraryCard";
     }
 
     @GetMapping("/update-user-profile/{id}")
@@ -76,7 +76,7 @@ public class AdminController {
 
         theModel.addAttribute("libraryCard", libraryCard);
 
-        return "updateUserProfile";
+        return "admin/updateLibraryCardByAdmin";
     }
 
     @PutMapping("/process-update-user-profile/{id}")
@@ -110,6 +110,6 @@ public class AdminController {
         theModel.addAttribute("users", userPage.getContent());
         theModel.addAttribute("page", userPage);
 
-        return "users";
+        return "admin/users";
     }
 }

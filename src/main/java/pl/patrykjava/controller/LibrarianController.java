@@ -17,8 +17,8 @@ public class LibrarianController {
     private LibrarianBookService librarianBookService;
 
     @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
-        return "librarianDashboard";
+    public String showDashboard() {
+        return "librarian/librarianDashboard";
     }
 
     @GetMapping("/books")
@@ -33,7 +33,6 @@ public class LibrarianController {
         model.addAttribute("totalPages", (int) Math.ceil(totalRecords / (double) booksPerPage));
         model.addAttribute("currentPage", page);
 
-        return "librarianSearchBooks";
+        return "librarian/librarianSearchBooks";
     }
-
 }

@@ -23,12 +23,12 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "loginPage";
+        return "home/loginPage";
     }
 
     @GetMapping("/home")
     public String home(){
-        return "home";
+        return "home/home";
     }
 
     @GetMapping("/register")
@@ -36,7 +36,7 @@ public class LoginController {
 
         theModel.addAttribute("user", new UserRegisterDTO());
 
-        return "registerUser";
+        return "home/registerUser";
     }
 
     @PostMapping("/process_registration")
