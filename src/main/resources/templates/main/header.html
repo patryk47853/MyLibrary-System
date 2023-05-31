@@ -10,8 +10,8 @@
       <li sec:authorize="hasAuthority('ADMIN')"><a href="/admin/users">Users</a></li>
       <li sec:authorize="hasAuthority('READER')"><a href="/books?query=">Books</a></li>
       <li sec:authorize="hasAuthority('ADMIN')"><a href="/librarian/dashboard">Dashboard</a></li>
-      <li sec:authorize="hasAuthority('READER')"><a href="/profile">Profile</a></li>
-      <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Library Card</a>
+      <li sec:authorize="hasAuthority('READER')"><a href="/library-card">Library Card</a></li>
+      <li sec:authorize="hasAuthority('USER')"><a href="/create-library-card">Apply for Library Card</a>
     </ul>
   </nav>
   <a class="cta" href=/logout><button>Logout</button></a>
