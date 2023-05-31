@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>MyLibrary - Update profile</title>
-</head>
+  <html lang="en">
+  <html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8">
+    <title>MyLibrary - Update profile</title>
+  </head>
 
-<!-- CSS stylesheet for home.html -->
-<link rel="stylesheet" href="/css/librarycard.css">
+  <!-- CSS stylesheet for home.html -->
+  <link rel="stylesheet" href="/css/librarycard.css">
 
 <body>
 <header th:replace="header :: header"></header>
 
 <div class="wrapper">
   <div class="container">
-    <div class="title"><span th:text="${libraryCard.getUser().username}"></span>'s Library Card</div>
+    <div class="title"><span sec:authentication="name"></span>'s Library Card</div>
     <div class="content">
       <div th:if="${param.success}">
         <div class="alert alert-success col-xs-offset-1 col-xs-10">
           <br>
-          You have successfully changed <span th:text="${libraryCard.getUser().username}"></span>'s library card details!
+          You have successfully changed your library card details!
         </div>
       </div>
-      <form th:action="@{/admin/process-update-user-profile/{id}(id=${libraryCard.getUser().getId()})}" method="post" th:object="${libraryCard}" >
+      <form th:action="@{/process-update-library-card}" method="post" th:object="${libraryCard}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
@@ -49,12 +49,8 @@
             <span class="details">City</span>
             <input type="text" name="city" th:value="${libraryCard.city}" />
           </div>
-          <!--        <div class="input-box">-->
-          <!--          <span class="details">Birthday</span>-->
-          <!--          <input type="date" th:field="*{birthday}">-->
-          <!--        </div>-->
         </div>
-        <button type="submit">Save</button>
+        <a class="cta" href=/process-update-profile><button>Save</button></a>
       </form>
     </div>
   </div>

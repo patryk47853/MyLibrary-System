@@ -43,14 +43,10 @@
           <span class="details">City</span>
           <input type="text" th:field="*{city}" placeholder="Enter your city" required>
         </div>
-<!--        <div class="input-box">-->
-<!--          <span class="details">Birthday</span>-->
-<!--          <input type="date" th:field="*{birthday}">-->
-<!--        </div>-->
       </div>
       <div th:if="${param.success}">
         <div class="alert alert-success col-xs-offset-1 col-xs-10">
-          You have successfully signed up! Please log in again.
+          You have successfully created your library card! Please log in again.
         </div>
       </div>
       <div th:if="${param.error}">

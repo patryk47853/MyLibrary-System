@@ -22,17 +22,17 @@
   <div class="row">
     <div class="col-md-3 sidebar">
       <div class="list-group">
-        <a href="/librarian/dashboard" class="list-group-item active">
+        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/dashboard" class="list-group-item">
           Dashboard
         </a>
-        <a href="/librarian/books?query=Harry" class="list-group-item">
+        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/books?query=" class="list-group-item">
           Search Books
         </a>
-        <a href="/librarian/borrowed" class="list-group-item">
-          Search Borrowed Books
+        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/borrowed" class="list-group-item">
+          Books History
         </a>
-        <a href="librarian/users" class="list-group-item">
-          Users
+        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/readers" class="list-group-item">
+          Readers
         </a>
       </div>
     </div>

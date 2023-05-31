@@ -17,7 +17,7 @@
   <div class="container">
     <div class="title"><span th:text="${libraryCard.getUser().username}"></span>'s Library Card</div>
     <div class="content">
-      <form th:action="@{/admin/users/}" method="get" th:object="${libraryCard}" >
+      <form th:action="@{/admin/library-cards/}" method="get" th:object="${libraryCard}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
@@ -43,10 +43,6 @@
             <span class="details">City</span>
             <input type="text" name="city" th:value="${libraryCard.city}" readonly/>
           </div>
-          <!--        <div class="input-box">-->
-          <!--          <span class="details">Birthday</span>-->
-          <!--          <input type="date" th:field="*{birthday}">-->
-          <!--        </div>-->
         </div>
       </form>
       <a th:href="@{/admin/update-user-profile/{id}(id=${libraryCard.id})}"><button>Edit</button></a>

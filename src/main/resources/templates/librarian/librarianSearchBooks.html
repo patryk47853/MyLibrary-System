@@ -9,6 +9,15 @@
 <header th:replace="header :: header"></header>
 <div class="wrapper">
     <div class="container mt-3">
+        <div class="search-container">
+            <form action="/librarian/books" method="get">
+                <input type="text" placeholder="Search books..." name="query" required>
+                <button type="submit">Search</button>
+            </form>
+            <div class="add-book-container">
+                <button onclick="location.href='/librarian/add-book'">Add Book</button>
+            </div>
+        </div>
         <h2>Books found</h2>
         <table>
             <thead>

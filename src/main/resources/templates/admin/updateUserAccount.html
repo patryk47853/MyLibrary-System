@@ -20,7 +20,7 @@
       <div th:if="${param.success}">
         <div class="alert alert-success col-xs-offset-1 col-xs-10">
           <br>
-          You have successfully changed <span th:text="${user.username}"></span>'s account details!
+          You have successfully changed <span th:text="${user.username}"></span>'s account's details!
         </div>
       </div>
       <form th:action="@{/admin/process-update-user-account/{id}(id=${user.id})}" method="post" th:object="${user}" >

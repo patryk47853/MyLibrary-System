@@ -4,7 +4,7 @@
   <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8">
-    <title>MyLibrary - Update profile</title>
+    <title>MyLibrary - Profile</title>
   </head>
 
   <!-- CSS stylesheet for home.html -->
@@ -17,45 +17,35 @@
   <div class="container">
     <div class="title"><span sec:authentication="name"></span>'s Library Card</div>
     <div class="content">
-      <div th:if="${param.success}">
-        <div class="alert alert-success col-xs-offset-1 col-xs-10">
-          <br>
-          You have successfully changed your library card details!
-        </div>
-      </div>
-      <form th:action="@{/process-update-profile}" method="post" th:object="${libraryCard}" >
+      <form th:action="@{/profile}" method="get" th:object="${user}" >
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
-            <input type="text" name="firstName" th:value="${libraryCard.firstName}" />
+            <input type="text" name="firstName" th:value="${user.firstName}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Last name</span>
-            <input type="text" name="lastName" th:value="${libraryCard.lastName}" />
+            <input type="text" name="lastName" th:value="${user.lastName}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="phoneNumber" th:value="${libraryCard.phoneNumber}" />
+            <input type="text" name="phoneNumber" th:value="${user.phoneNumber}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" name="address" th:value="${libraryCard.address}" />
+            <input type="text" name="address" th:value="${user.address}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">Postal code</span>
-            <input type="text" name="postalCode" th:value="${libraryCard.postalCode}" />
+            <input type="text" name="postalCode" th:value="${user.postalCode}" readonly/>
           </div>
           <div class="input-box">
             <span class="details">City</span>
-            <input type="text" name="city" th:value="${libraryCard.city}" />
+            <input type="text" name="city" th:value="${user.city}" readonly/>
           </div>
-          <!--        <div class="input-box">-->
-          <!--          <span class="details">Birthday</span>-->
-          <!--          <input type="date" th:field="*{birthday}">-->
-          <!--        </div>-->
         </div>
-        <a class="cta" href=/process-update-profile><button>Save</button></a>
       </form>
+      <a class="cta" href=/update-profile><button>Edit</button></a>
     </div>
   </div>
 </div>
