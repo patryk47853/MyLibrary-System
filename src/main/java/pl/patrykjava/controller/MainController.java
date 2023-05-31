@@ -10,7 +10,7 @@ import pl.patrykjava.dto.UserRegisterDTO;
 import pl.patrykjava.service.UserService;
 
 @Controller
-public class LoginController {
+public class MainController {
 
     @Autowired
     private UserService userService;
@@ -23,12 +23,12 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "home/loginPage";
+        return "main/loginPage";
     }
 
     @GetMapping("/home")
     public String home(){
-        return "home/home";
+        return "main/home";
     }
 
     @GetMapping("/register")
@@ -36,7 +36,7 @@ public class LoginController {
 
         theModel.addAttribute("user", new UserRegisterDTO());
 
-        return "home/registerUser";
+        return "main/registerUser";
     }
 
     @PostMapping("/process_registration")
