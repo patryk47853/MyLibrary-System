@@ -2,11 +2,11 @@ package pl.patrykjava.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.patrykjava.dto.LibraryCardDTO;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.Role;
@@ -75,6 +75,44 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         userRepository.save(user);
 
         return libraryCard;
+    }
+
+    @Override
+    public String createLibraryCard(LibraryCardDTO libraryCardDTO, UserDetails currentUser) {
+        User user = userRepository.findByUsername(currentUser.getUsername());
+        if (user.getLibraryCard() != null) {
+            return "templates/error";
+        }
+
+        // Perform the necessary operations to create the library card
+        save(libraryCardDTO);
+
+        return "success";
+    }
+
+    public LibraryCard getLibraryCardByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            return user.getLibraryCard();
+        }
+        return null;
+    }
+
+    public void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO, User user,
+                                  LibraryCardRepository libraryCardRepository, UserRepository userRepository) {
+        LibraryCard thelibraryCard = user.getLibraryCard();
+
+        thelibraryCard.setFirstName(libraryCardDTO.getFirstName());
+        thelibraryCard.setLastName(libraryCardDTO.getLastName());
+        thelibraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
+        thelibraryCard.setAddress(libraryCardDTO.getAddress());
+        thelibraryCard.setPostalCode(libraryCardDTO.getPostalCode());
+        thelibraryCard.setCity(libraryCardDTO.getCity());
+
+        libraryCardRepository.save(thelibraryCard);
+
+        user.setLibraryCard(thelibraryCard);
+        userRepository.save(user);
     }
 
     @Override
