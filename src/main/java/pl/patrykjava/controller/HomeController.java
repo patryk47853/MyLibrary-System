@@ -1,6 +1,5 @@
 package pl.patrykjava.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,81 +14,66 @@ import pl.patrykjava.service.LibraryCardService;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private LibraryCardService libraryCardService;
 
-    @Autowired
-    private LibraryCardRepository libraryCardRepository;
-    @Autowired
-    private UserRepository userRepository;
+    private final LibraryCardService libraryCardService;
+    private final LibraryCardRepository libraryCardRepository;
+    private final UserRepository userRepository;
+
+    public HomeController(LibraryCardService libraryCardService, LibraryCardRepository libraryCardRepository, UserRepository userRepository) {
+        this.libraryCardService = libraryCardService;
+        this.libraryCardRepository = libraryCardRepository;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/create-library-card")
-    public String libraryCard(Model theModel) {
+    public String createLibraryCard(Model theModel) {
 
         theModel.addAttribute("libraryCard", new LibraryCardDTO());
 
-        return "createLibraryCard";
+        return "home/createLibraryCard";
     }
 
     @PostMapping("/process-library-card")
-    public String createLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
+    public String processCreatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                     @AuthenticationPrincipal UserDetails currentUser) {
 
-        User user = userRepository.findByUsername(currentUser.getUsername());
-        if(user.getLibraryCard() != null) {
-            return "redirect:/create-library-card?error";
-        }
-
-        libraryCardService.save(libraryCardDTO);
+        libraryCardService.createLibraryCard(libraryCardDTO, currentUser);
 
         return "redirect:/create-library-card?success";
     }
 
-    @GetMapping("/profile")
-    public String showProfile(Model theModel,
+    @GetMapping("/library-card")
+    public String showLibraryCard(Model theModel,
                               @AuthenticationPrincipal UserDetails currentUser) {
 
-        User user = userRepository.findByUsername(currentUser.getUsername());
-        LibraryCard libraryCard = user.getLibraryCard();
-
-        theModel.addAttribute("user", libraryCard);
-
-        return "profile";
-    }
-
-    @GetMapping("/update-profile")
-    public String updateProfile(Model theModel,
-                                @AuthenticationPrincipal UserDetails currentUser) {
-
-        User user = userRepository.findByUsername(currentUser.getUsername());
-        LibraryCard libraryCard = user.getLibraryCard();
+        LibraryCard libraryCard = libraryCardService
+                .getLibraryCardByUsername(currentUser.getUsername());
 
         theModel.addAttribute("libraryCard", libraryCard);
 
-        return "updateProfile";
+        return "home/showLibraryCard";
     }
 
-    @PostMapping("/process-update-profile")
-    public String processUpdateProfile(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
+    @GetMapping("/update-library-card")
+    public String updateLibraryCard(Model theModel,
+                                @AuthenticationPrincipal UserDetails currentUser) {
+
+        LibraryCard libraryCard = libraryCardService
+                .getLibraryCardByUsername(currentUser.getUsername());
+
+        theModel.addAttribute("libraryCard", libraryCard);
+
+        return "home/updateLibraryCard";
+    }
+
+    @PostMapping("/process-update-library-card")
+    public String processUpdatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                        @AuthenticationPrincipal UserDetails currentUser) {
 
         User user = userRepository.findByUsername(currentUser.getUsername());
-        LibraryCard thelibraryCard = user.getLibraryCard();
+        libraryCardService.updateLibraryCard(libraryCardDTO, user, libraryCardRepository, userRepository);
 
-        thelibraryCard.setFirstName(libraryCardDTO.getFirstName());
-        thelibraryCard.setLastName(libraryCardDTO.getLastName());
-        thelibraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
-        thelibraryCard.setAddress(libraryCardDTO.getAddress());
-        thelibraryCard.setPostalCode(libraryCardDTO.getPostalCode());
-        thelibraryCard.setCity(libraryCardDTO.getCity());
-
-        libraryCardRepository.save(thelibraryCard);
-
-        user.setLibraryCard(thelibraryCard);
-        userRepository.save(user);
-
-        return "redirect:/update-profile?success";
+        return "redirect:/update-library-card?success";
     }
-
 
 }

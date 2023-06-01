@@ -13,15 +13,23 @@ import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.UserRepository;
+import pl.patrykjava.service.LibraryCardService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private LibraryCardRepository libraryCardRepository;
-    @Autowired
-    private UserRepository userRepository;
+    private final LibraryCardRepository libraryCardRepository;
+
+    private final LibraryCardService libraryCardService;
+
+    private final UserRepository userRepository;
+
+    public AdminController(LibraryCardRepository libraryCardRepository, LibraryCardService libraryCardService, UserRepository userRepository) {
+        this.libraryCardRepository = libraryCardRepository;
+        this.libraryCardService = libraryCardService;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/accounts/{id}")
     public String showUserAccount(@PathVariable("id") int id, Model theModel) {
@@ -80,23 +88,11 @@ public class AdminController {
     }
 
     @PutMapping("/process-update-user-profile/{id}")
-    public String processUpdateUserProfile(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
+    public String processUpdate(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                            @PathVariable("id") int id) {
 
         User user = userRepository.findUserById(id);
-        LibraryCard thelibraryCard = user.getLibraryCard();
-
-        thelibraryCard.setFirstName(libraryCardDTO.getFirstName());
-        thelibraryCard.setLastName(libraryCardDTO.getLastName());
-        thelibraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
-        thelibraryCard.setAddress(libraryCardDTO.getAddress());
-        thelibraryCard.setPostalCode(libraryCardDTO.getPostalCode());
-        thelibraryCard.setCity(libraryCardDTO.getCity());
-
-        libraryCardRepository.save(thelibraryCard);
-
-        user.setLibraryCard(thelibraryCard);
-        userRepository.save(user);
+        libraryCardService.updateLibraryCard(libraryCardDTO, user, libraryCardRepository, userRepository);
 
         return "redirect:/admin/update-user-profile/{id}?success";
     }
