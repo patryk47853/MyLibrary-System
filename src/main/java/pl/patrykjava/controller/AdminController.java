@@ -33,9 +33,7 @@ public class AdminController {
 
     @GetMapping("/accounts/{id}")
     public String showUserAccount(@PathVariable("id") int id, Model theModel) {
-
         User user = userRepository.findUserById(id);
-
         theModel.addAttribute("user", user);
 
         return "admin/showUserAccount";
@@ -43,9 +41,7 @@ public class AdminController {
 
     @GetMapping("/update-user-account/{id}")
     public String updateUserAccount(@PathVariable("id") int id, Model theModel) {
-
         User user = userRepository.findUserById(id);
-
         theModel.addAttribute("user", user);
 
         return "admin/updateUserAccount";
@@ -56,7 +52,6 @@ public class AdminController {
                                            @PathVariable("id") int id) {
 
         User user = userRepository.findUserById(id);
-
         user.setUsername(userRegisterDTO.getUsername());
         user.setEmail(userRegisterDTO.getEmail());
 

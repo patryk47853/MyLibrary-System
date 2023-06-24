@@ -60,7 +60,7 @@ public class SecurityConfiguration {
                 .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
-                .deleteCookies("LIBRARY-COOKIE")
+                .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
