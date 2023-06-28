@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.patrykjava.dto.UserRegisterDTO;
+import pl.patrykjava.dto.UserDTO;
 import pl.patrykjava.service.UserService;
 
 @Controller
@@ -34,15 +34,15 @@ public class MainController {
     @GetMapping("/register")
     public String registerUser(Model theModel) {
 
-        theModel.addAttribute("user", new UserRegisterDTO());
+        theModel.addAttribute("user", new UserDTO());
 
         return "main/registerUser";
     }
 
     @PostMapping("/process_registration")
-    public String processRegistration(@ModelAttribute("user") UserRegisterDTO userRegisterDTO) {
+    public String processRegistration(@ModelAttribute("user") UserDTO userDTO) {
 
-        userService.save(userRegisterDTO);
+        userService.save(userDTO);
 
         return "redirect:/register?success";
     }

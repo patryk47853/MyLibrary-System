@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -15,6 +16,13 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 public class User{
+
+    public User(String username, String email, String password, Timestamp createdAt) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now().plusHours(2L));
+    }
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -55,12 +63,12 @@ public class User{
     )
     private Set<Role> roles = new HashSet<>();
 
-    public void addRole(Role role) {
-        this.roles.add(role);
-    }
-
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "user")
     private LibraryCard libraryCard;
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 }

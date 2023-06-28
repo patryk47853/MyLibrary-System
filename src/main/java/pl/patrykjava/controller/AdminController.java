@@ -1,6 +1,5 @@
 package pl.patrykjava.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -8,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.patrykjava.dto.LibraryCardDTO;
-import pl.patrykjava.dto.UserRegisterDTO;
+import pl.patrykjava.dto.UserDTO;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
@@ -48,12 +47,12 @@ public class AdminController {
     }
 
     @PutMapping("/process-update-user-account/{id}")
-    public String processUpdateUserAccount(@ModelAttribute("user") UserRegisterDTO userRegisterDTO,
+    public String processUpdateUserAccount(@ModelAttribute("user") UserDTO userDTO,
                                            @PathVariable("id") int id) {
 
         User user = userRepository.findUserById(id);
-        user.setUsername(userRegisterDTO.getUsername());
-        user.setEmail(userRegisterDTO.getEmail());
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
 
         userRepository.save(user);
 

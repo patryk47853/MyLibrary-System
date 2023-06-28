@@ -6,14 +6,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.patrykjava.dto.UserRegisterDTO;
+import pl.patrykjava.dto.UserDTO;
 import pl.patrykjava.entity.Role;
 import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -33,23 +31,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserRegisterDTO userRegisterDTO) {
-        User user = new User(userRegisterDTO.getUsername(),
-                userRegisterDTO.getEmail(),
-                passwordEncoder.encode(userRegisterDTO.getPassword()));
-
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
+    public User save(UserDTO userDTO) {
+        User user = new User(
+                userDTO.getUsername(),
+                userDTO.getEmail(),
+                passwordEncoder.encode(userDTO.getPassword()),
+                userDTO.getCreatedAt()
+        );
 
         // add USER role when processing registration
-        Role roleUser = roleRepository.findByName("USER");
-        user.addRole(roleUser);
+        Role userRole = roleRepository.findByName("USER");
+        user.addRole(userRole);
 
         return userRepository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         User user = userRepository.findByUsername(username);
 
         if(user == null) {
@@ -62,6 +60,9 @@ public class UserServiceImpl implements UserService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return roles
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
     }
 }
