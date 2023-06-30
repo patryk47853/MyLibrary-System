@@ -2,11 +2,9 @@ package pl.patrykjava.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalDateTime;
 
 @Data
 @Getter
@@ -18,13 +16,16 @@ import java.util.Set;
 public class LibraryCard {
 
 
-    public LibraryCard(String firstName, String lastName, String phoneNumber, String address, String postalCode, String city) {
+    public LibraryCard(String firstName, String lastName, String phoneNumber,
+                       String address, String postalCode, String city,
+                       Timestamp createdAt) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.postalCode = postalCode;
         this.city = city;
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now().plusHours(2L));
     }
 
     @Id

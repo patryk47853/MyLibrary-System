@@ -1,6 +1,5 @@
 package pl.patrykjava.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,20 +22,16 @@ import java.time.LocalDateTime;
 @Service
 public class LibraryCardServiceImpl implements LibraryCardService {
 
-    @Autowired
-    LibraryCardRepository libraryCardRepository;
+    private final LibraryCardRepository libraryCardRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserRoleRepository userRoleRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    RoleRepository roleRepository;
-
-    @Autowired
-    UserRoleRepository userRoleRepository;
-
-    public LibraryCardServiceImpl(LibraryCardRepository libraryCardRepository) {
+    public LibraryCardServiceImpl(LibraryCardRepository libraryCardRepository, UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository) {
         this.libraryCardRepository = libraryCardRepository;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -51,14 +46,15 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         // We should save library card to existing user
         User user = userRepository.findByUsername(username);
 
-        LibraryCard libraryCard = new LibraryCard(libraryCardDTO.getFirstName(),
+        LibraryCard libraryCard = new LibraryCard(
+                libraryCardDTO.getFirstName(),
                 libraryCardDTO.getLastName(),
                 libraryCardDTO.getPhoneNumber(),
                 libraryCardDTO.getAddress(),
                 libraryCardDTO.getPostalCode(),
-                libraryCardDTO.getCity());
-
-        libraryCard.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
+                libraryCardDTO.getCity(),
+                libraryCardDTO.getCreatedAt()
+        );
 
         libraryCard.setUser(user);
         user.setLibraryCard(libraryCard);
@@ -98,23 +94,27 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         return null;
     }
 
-    public void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO, User user,
-                                  LibraryCardRepository libraryCardRepository, UserRepository userRepository) {
-        LibraryCard thelibraryCard = user.getLibraryCard();
+    public void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
+                                  User user,
+                                  LibraryCardRepository libraryCardRepository,
+                                  UserRepository userRepository) {
 
-        thelibraryCard.setFirstName(libraryCardDTO.getFirstName());
-        thelibraryCard.setLastName(libraryCardDTO.getLastName());
-        thelibraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
-        thelibraryCard.setAddress(libraryCardDTO.getAddress());
-        thelibraryCard.setPostalCode(libraryCardDTO.getPostalCode());
-        thelibraryCard.setCity(libraryCardDTO.getCity());
+        LibraryCard libraryCard = user.getLibraryCard();
 
-        libraryCardRepository.save(thelibraryCard);
+        libraryCard.setFirstName(libraryCardDTO.getFirstName());
+        libraryCard.setLastName(libraryCardDTO.getLastName());
+        libraryCard.setPhoneNumber(libraryCardDTO.getPhoneNumber());
+        libraryCard.setAddress(libraryCardDTO.getAddress());
+        libraryCard.setPostalCode(libraryCardDTO.getPostalCode());
+        libraryCard.setCity(libraryCardDTO.getCity());
 
-        user.setLibraryCard(thelibraryCard);
+        libraryCardRepository.save(libraryCard);
+
+        user.setLibraryCard(libraryCard);
         userRepository.save(user);
     }
 
+    // Currently: no usages
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
