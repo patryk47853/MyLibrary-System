@@ -7,13 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.patrykjava.dto.UserDTO;
+import pl.patrykjava.repository.UserRepository;
 import pl.patrykjava.service.UserService;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final UserRepository userRepository;
+
+    public MainController(UserService userService, UserRepository userRepository) {
+        this.userService = userService;
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/")
     public String redirectToLoginPage() {
@@ -35,12 +41,17 @@ public class MainController {
     public String registerUser(Model theModel) {
 
         theModel.addAttribute("user", new UserDTO());
+        theModel.addAttribute("error", false);
 
         return "main/registerUser";
     }
 
     @PostMapping("/process_registration")
-    public String processRegistration(@ModelAttribute("user") UserDTO userDTO) {
+    public String processRegistration(@ModelAttribute("user") UserDTO userDTO, Model theModel) {
+        if (userService.isUsernameTaken(userDTO.getUsername()) || userService.isEmailTaken(userDTO.getEmail())) {
+            theModel.addAttribute("error", true);
+            return "main/registerUser";
+        }
 
         userService.save(userDTO);
 
