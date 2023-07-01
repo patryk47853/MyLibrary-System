@@ -1,10 +1,7 @@
 package pl.patrykjava;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,7 +14,6 @@ import pl.patrykjava.repository.UserRepository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -36,85 +32,104 @@ class UserRepositoryTest {
     @Test
     @Order(1)
     @Rollback(value = false)
-    public void createUserTest() {
+    public void createUser_whenSaved_thenGetOk() {
+        //given
+        User user = new User(
+                "patryk47853",
+                "patryk47853@test.com",
+                "patryk47853",
+                Timestamp.valueOf(LocalDateTime.now().plusHours(2L))
+        );
 
-        User user = new User();
-        user.setUsername("patryk47853");
-        user.setPassword("patryk47853");
-        user.setEmail("patryk47853@test.com");
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
+        //when
+        userRepository.save(user);
+        User existingUser = entityManager.find(User.class, user.getId());
 
-        User newUser = userRepository.save(user);
-
-        User existingUser = entityManager.find(User.class, newUser.getId());
-
-
-        Assertions.assertThat(existingUser.getEmail()).isEqualTo(user.getEmail());
+        //then
+        Assertions.assertThat(existingUser.getId()).isEqualTo(user.getId());
     }
 
     @Test
     @Order(2)
     @Rollback(value = false)
-    public void createUserWithRoleTest() {
+    public void createUserAndAssignRole_whenGranted_thenGetOk() {
+        //given
+        User user = new User("patryk35874",
+                "patryk35874@test.com",
+                "patryk35874",
+                Timestamp.valueOf(LocalDateTime.now().plusHours(2L)));
 
-        User user = new User();
-        user.setUsername("patryk35874");
-        user.setPassword("patryk35874");
-        user.setEmail("patryk35874@test.com");
-        user.setCreatedAt(Timestamp.valueOf(LocalDateTime.now().plusHours(1L)));
+        //when
+        Role userRole = roleRepository.findByName("USER");
+        user.addRole(userRole);
+        userRepository.save(user);
 
-        Role roleUser = roleRepository.findByName("USER");
-        user.addRole(roleUser);
+        User newUser = userRepository.findByUsername("patryk35874");
 
-        User theUser = userRepository.save(user);
-
-
-        Assertions.assertThat(theUser.getRoles().size()).isEqualTo(1);
+        //then (newly created User should have only one role)
+        Assertions.assertThat(newUser.getRoles().size()).isEqualTo(1);
     }
 
     @Test
     @Order(3)
-    public void addRoleToExistingUser() {
+    public void assignRoleToUser_whenAssigned_thenGetOk() {
+       //given
+       String username = "patryk2136";
+       Role readerRole = roleRepository.findByName("READER");
 
-       User user = userRepository.findByUsername("patryk2136");
-       Role roleReader = roleRepository.findByName("READER");
-       user.addRole(roleReader);
+       //when
+       User user = userRepository.findByUsername(username);
 
+       user.addRole(readerRole);
        userRepository.save(user);
+
+       //then
+       Assertions.assertThat(user.getRoles()).contains(readerRole);
     }
 
     @Test
     @Order(4)
-    public void findUserByEmailTest() {
-
+    public void givenEmail_whenFound_thenGetOk() {
+        //given
         String email = "patryk47853@test.com";
 
+        //when
         User user = userRepository.findByEmail(email);
 
-        Assertions.assertThat(user.getUsername()).isEqualTo("patryk47853");
+        //then
+        Assertions.assertThat(user.getEmail()).isEqualTo(email);
     }
 
     @Test
     @Order(5)
-    public void findUserByUsernameTest() {
-
+    public void givenUsername_whenFound_thenGetOk() {
+        //given
         String username = "patryk47853";
 
+        //when
         User user = userRepository.findByUsername(username);
 
-        Assertions.assertThat(user.getEmail()).isEqualTo("patryk47853@test.com");
+        //then
+        Assertions.assertThat(user.getUsername()).isEqualTo(username);
     }
 
     @Test
     @Order(6)
     @Rollback(value = false)
-    public void deleteUserByEmailTest() {
+    public void givenUserEmail_whenUserDeleted_thenGetOk() {
+        //given
+        String firstEmail = "patryk47853@test.com";
+        String secondEmail = "patryk35874@test.com";
 
-        String email = "patryk47853@test.com";
+        //when
+        User firstUser = userRepository.findByEmail(firstEmail);
+        userRepository.delete(firstUser);
 
-        User user = userRepository.findByEmail(email);
+        User secondUser = userRepository.findByEmail(secondEmail);
+        userRepository.delete(secondUser);
 
-        userRepository.delete(user);
+        //then
+        Assertions.assertThat(userRepository.findByEmail(firstEmail)).isNull();
+        Assertions.assertThat(userRepository.findByEmail(secondEmail)).isNull();
     }
-
 }
