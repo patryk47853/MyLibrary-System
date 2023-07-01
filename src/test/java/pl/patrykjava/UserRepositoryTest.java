@@ -26,9 +26,6 @@ class UserRepositoryTest {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Autowired
-    private TestEntityManager entityManager;
-
     @Test
     @Order(1)
     @Rollback(value = false)
@@ -43,7 +40,7 @@ class UserRepositoryTest {
 
         //when
         userRepository.save(user);
-        User existingUser = entityManager.find(User.class, user.getId());
+        User existingUser = userRepository.findUserById(user.getId());
 
         //then
         Assertions.assertThat(existingUser.getId()).isEqualTo(user.getId());
@@ -116,7 +113,7 @@ class UserRepositoryTest {
     @Test
     @Order(6)
     @Rollback(value = false)
-    public void givenUserEmail_whenUserDeleted_thenGetOk() {
+    public void givenEmail_whenUserDeleted_thenGetOk() {
         //given
         String firstEmail = "patryk47853@test.com";
         String secondEmail = "patryk35874@test.com";
