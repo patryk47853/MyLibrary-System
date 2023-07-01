@@ -13,8 +13,11 @@ import pl.patrykjava.service.LibrarianBookService;
 @RequestMapping("/librarian")
 public class LibrarianController {
 
-    @Autowired
-    private LibrarianBookService librarianBookService;
+    private final LibrarianBookService librarianBookService;
+
+    public LibrarianController(LibrarianBookService librarianBookService) {
+        this.librarianBookService = librarianBookService;
+    }
 
     @GetMapping("/dashboard")
     public String showDashboard() {
