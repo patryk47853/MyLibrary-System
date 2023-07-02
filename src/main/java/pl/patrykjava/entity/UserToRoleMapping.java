@@ -11,14 +11,14 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users_roles")
-public class UserRole {
+public class UserToRoleMapping {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "users_id")
+    @Column(name = "user_id")
     private int userId;
 
-    @Column(name = "roles_id")
+    @Column(name = "role_id")
     private int roleId;
 
 }

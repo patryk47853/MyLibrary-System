@@ -6,32 +6,52 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.webjars.NotFoundException;
 import pl.patrykjava.dto.LibraryCardDTO;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.entity.Role;
 import pl.patrykjava.entity.User;
-import pl.patrykjava.entity.UserRole;
+import pl.patrykjava.entity.UserToRoleMapping;
 import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
-import pl.patrykjava.repository.UserRoleRepository;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import pl.patrykjava.repository.UserToRoleMappingRepository;
 
 @Service
 public class LibraryCardServiceImpl implements LibraryCardService {
 
-    private final LibraryCardRepository libraryCardRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final UserRoleRepository userRoleRepository;
+    private final UserToRoleMappingRepository userToRoleMappingRepository;
 
-    public LibraryCardServiceImpl(LibraryCardRepository libraryCardRepository, UserRepository userRepository, RoleRepository roleRepository, UserRoleRepository userRoleRepository) {
-        this.libraryCardRepository = libraryCardRepository;
+    public LibraryCardServiceImpl(UserRepository userRepository, RoleRepository roleRepository, UserToRoleMappingRepository userToRoleMappingRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.userRoleRepository = userRoleRepository;
+        this.userToRoleMappingRepository = userToRoleMappingRepository;
+    }
+
+    @Override
+    public String createLibraryCard(LibraryCardDTO libraryCardDTO, UserDetails currentUser) {
+        User user = userRepository.findByUsername(currentUser.getUsername());
+
+        if (user.getLibraryCard() != null) {
+            return "templates/error";
+        }
+
+        // Perform the necessary operations to create the library card
+        save(libraryCardDTO);
+
+        return "success";
+    }
+
+    public LibraryCard getLibraryCardByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+
+        if (user != null) {
+            return user.getLibraryCard();
+        }
+
+        throw new NotFoundException("User " + username + " not found.");
     }
 
     @Override
@@ -39,11 +59,10 @@ public class LibraryCardServiceImpl implements LibraryCardService {
 
         // Get the authentication object for the current user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String username = userDetails.getUsername();
 
         // We should save library card to existing user
+        String username = userDetails.getUsername();
         User user = userRepository.findByUsername(username);
 
         LibraryCard libraryCard = new LibraryCard(
@@ -60,38 +79,16 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         user.setLibraryCard(libraryCard);
 
         // Delete 'User' role (ID:1) --> user becomes 'Reader'
-        UserRole usersRoles = new UserRole(user.getId(), 1);
-        userRoleRepository.delete(usersRoles);
-
+        UserToRoleMapping userToRoleMapping = new UserToRoleMapping(user.getId(), 1);
+        userToRoleMappingRepository.delete(userToRoleMapping);
 
         // If user got the library card, he should become 'Reader' and have access to the books
-        Role roleReader = roleRepository.findByName("READER");
-        user.addRole(roleReader);
+        Role readerRole = roleRepository.findByName("READER");
+        user.addRole(readerRole);
 
         userRepository.save(user);
 
         return libraryCard;
-    }
-
-    @Override
-    public String createLibraryCard(LibraryCardDTO libraryCardDTO, UserDetails currentUser) {
-        User user = userRepository.findByUsername(currentUser.getUsername());
-        if (user.getLibraryCard() != null) {
-            return "templates/error";
-        }
-
-        // Perform the necessary operations to create the library card
-        save(libraryCardDTO);
-
-        return "success";
-    }
-
-    public LibraryCard getLibraryCardByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user != null) {
-            return user.getLibraryCard();
-        }
-        return null;
     }
 
     public void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
