@@ -1,24 +1,20 @@
 package pl.patrykjava.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.patrykjava.dto.UserDTO;
-import pl.patrykjava.repository.UserRepository;
 import pl.patrykjava.service.UserService;
 
 @Controller
 public class MainController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
-    public MainController(UserService userService, UserRepository userRepository) {
+    public MainController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/")
