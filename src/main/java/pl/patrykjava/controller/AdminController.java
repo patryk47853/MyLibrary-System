@@ -71,7 +71,7 @@ public class AdminController {
     }
 
     @GetMapping("/update-user-profile/{id}")
-    public String updateUserProfile(@PathVariable("id") int id, Model theModel) {
+    public String updateUserLibraryCard(@PathVariable("id") int id, Model theModel) {
 
         User user = userRepository.findUserById(id);
         LibraryCard libraryCard = user.getLibraryCard();
@@ -81,8 +81,8 @@ public class AdminController {
         return "admin/updateLibraryCardByAdmin";
     }
 
-    @PutMapping("/process-update-user-profile/{id}")
-    public String processUpdate(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
+    @PutMapping("/process-update-library-card/{id}")
+    public String processUpdateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                            @PathVariable("id") int id) {
 
         User user = userRepository.findUserById(id);
@@ -93,7 +93,7 @@ public class AdminController {
 
 
     @GetMapping("/users")
-    public String users(@PageableDefault(size = 5) Pageable pageable, Model theModel) {
+    public String showUsers(@PageableDefault(size = 5) Pageable pageable, Model theModel) {
 
         Page<User> userPage = userRepository.findAll(pageable);
 

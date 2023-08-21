@@ -27,8 +27,8 @@
         <td th:text="${user.id}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.email}"></td>
-        <td><a th:href="@{/admin/account/{id}(id=${user.id})}"><button>Show</button></a></td>
-        <td><a th:href="@{/admin/user/{id}(id=${user.id})}"><button>Show</button></a></td>
+        <td><a th:href="@{/admin/accounts/{id}(id=${user.id})}"><button>Show</button></a></td>
+        <td><a th:href="@{/admin/users/{id}(id=${user.id})}"><button>Show</button></a></td>
     </tr>
 </table>
         <br>
