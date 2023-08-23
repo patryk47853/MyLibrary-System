@@ -18,4 +18,8 @@ public class Book {
 
     private String title;
     private List<String> authors;
+    private String publishedDate;
+
+    private String pageCount;
+    private List<String> categories;
 }
