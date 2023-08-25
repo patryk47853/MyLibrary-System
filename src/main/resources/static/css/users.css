@@ -279,3 +279,7 @@
         color: white;
         border: 1px solid #4CAF50;
     }
+
+    .details-header {
+        padding-left: 35px;
+    }
