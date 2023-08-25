@@ -46,7 +46,7 @@ public class AdminController {
         return "admin/updateUserAccount";
     }
 
-    @PutMapping("/process-update-user-account/{id}")
+    @PostMapping("/process-update-user-account/{id}")
     public String processUpdateUserAccount(@ModelAttribute("user") UserDTO userDTO,
                                            @PathVariable("id") int id) {
 
@@ -81,7 +81,7 @@ public class AdminController {
         return "admin/updateLibraryCardByAdmin";
     }
 
-    @PutMapping("/process-update-library-card/{id}")
+    @PostMapping("/process-update-library-card/{id}")
     public String processUpdateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                            @PathVariable("id") int id) {
 
