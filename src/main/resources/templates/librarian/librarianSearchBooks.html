@@ -15,6 +15,7 @@
                 <button type="submit">Search</button>
             </form>
         </div>
+        <th:block th:if="${query}">
         <h2>Books found</h2>
         <table>
             <thead>
@@ -48,6 +49,7 @@
                th:text="${p+1}" th:class="${p==currentPage} ? 'active' : ''"></a>
             <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
         </div>
+        </th:block>
     </div>
 </div>
 </body>

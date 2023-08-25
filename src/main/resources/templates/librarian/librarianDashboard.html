@@ -25,20 +25,20 @@
         <li sec:authorize="hasAuthority('READER')"><a href="/librarian/dashboard" class="list-group-item">
           Dashboard
         </a>
-        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/books?query=" class="list-group-item">
-          Search Books
+        <li sec:authorize="hasAuthority('READER')"><a href="/librarian/books" class="list-group-item">
+          Find new books
         </a>
         <li sec:authorize="hasAuthority('READER')"><a href="/librarian/borrowed" class="list-group-item">
-          Books History
+          Borrowed books
         </a>
         <li sec:authorize="hasAuthority('READER')"><a href="/librarian/readers" class="list-group-item">
-          Readers
+          List of readers
         </a>
       </div>
     </div>
     <div class="col-md-9 main-content">
       <h1>Dashboard</h1>
-      <p>Welcome to your dashboard. From here you can manage your library's resources.</p>
+      <p>Welcome to your dashboard, <strong sec:authentication="name" style="color: red"></strong>. From here you can manage your library's resources.</p>
     </div>
   </div>
 </div>
