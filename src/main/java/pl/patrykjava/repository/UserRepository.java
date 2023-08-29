@@ -1,5 +1,7 @@
 package pl.patrykjava.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -17,5 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u from User u where u.id = ?1")
     User findUserById(int id);
+
+    Page<User> findByUsernameContainingIgnoreCase(String username, Pageable pageable);
 
 }
