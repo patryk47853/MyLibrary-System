@@ -52,12 +52,20 @@ public class LibrarianController {
     }
 
     @GetMapping("/readers")
-    public String showReaders(@PageableDefault(size = 5) Pageable pageable, Model theModel) {
+    public String showReaders(@RequestParam(value = "phoneNumber", required = false) String phoneNumber, @PageableDefault(size = 5) Pageable pageable, Model theModel) {
+        Page<LibraryCard> libraryCards;
 
-        Page<LibraryCard> libraryCards = libraryCardRepository.findAll(pageable);
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            libraryCards = libraryCardRepository.findByPhoneNumber(phoneNumber, pageable);
+        } else {
+            libraryCards = libraryCardRepository.findAll(pageable);
+        }
 
         theModel.addAttribute("readers", libraryCards.getContent());
-        theModel.addAttribute("page", libraryCards);
+        theModel.addAttribute("libraryCards", libraryCards);
+
+        long totalReaders = libraryCardRepository.count();
+        theModel.addAttribute("totalReaders", totalReaders);
 
         return "librarian/librarianReaders";
     }
