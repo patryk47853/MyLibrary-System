@@ -15,10 +15,16 @@
 
 <div class="wrapper">
     <div class="container">
+        <div class="search-container">
+            <form action="/admin/users" method="get">
+                <input type="text" placeholder="Find user..." name="username" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
 <table>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Username</th>
         <th>Email</th>
         <th>&nbsp;&nbsp;Account</th>
         <th>Library Card</th>
@@ -34,12 +40,11 @@
         <br>
         <div class="pagination">
             <a href="?page=0">&laquo;</a>
-            <a href="?page=0" th:classappend="${page.number == 0} ? active : ''">1</a>
-            <a href="?page=1" th:classappend="${page.number == 1} ? active : ''">2</a>
-            <a href="?page=2" th:classappend="${page.number == 2} ? active : ''">3</a>
-            <a href="?page=3" th:classappend="${page.number == 3} ? active : ''">4</a>
-            <a href="?page=4" th:classappend="${page.number == 4} ? active : ''">5</a>
-            <a href="?page=4">&raquo;</a>
+            <!-- Iterate to generate pagination links based on the total number of users -->
+            <th:block th:each="pageNumber : ${#numbers.sequence(0, (totalUsers / 5))}">
+                <a th:href="@{|?page=${pageNumber}|}" th:classappend="${page.number == pageNumber} ? active : ''" th:text="${pageNumber + 1}"></a>
+            </th:block>
+            <a th:href="@{|?page=${(totalUsers / 5)}|}">&raquo;</a>
         </div>
     </div>
 </div>

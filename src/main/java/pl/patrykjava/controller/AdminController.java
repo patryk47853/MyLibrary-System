@@ -93,12 +93,20 @@ public class AdminController {
 
 
     @GetMapping("/users")
-    public String showUsers(@PageableDefault(size = 5) Pageable pageable, Model theModel) {
+    public String showUsers(@RequestParam(value = "username", required = false) String username, @PageableDefault(size = 5) Pageable pageable, Model theModel) {
+        Page<User> userPage;
 
-        Page<User> userPage = userRepository.findAll(pageable);
+        if (username != null && !username.isEmpty()) {
+            userPage = userRepository.findByUsernameContainingIgnoreCase(username, pageable);
+        } else {
+            userPage = userRepository.findAll(pageable);
+        }
 
         theModel.addAttribute("users", userPage.getContent());
         theModel.addAttribute("page", userPage);
+
+        long totalUsers = userRepository.count();
+        theModel.addAttribute("totalUsers", totalUsers);
 
         return "admin/users";
     }
