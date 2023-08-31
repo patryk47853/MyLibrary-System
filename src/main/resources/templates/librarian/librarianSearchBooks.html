@@ -15,40 +15,49 @@
                 <button type="submit">Search</button>
             </form>
         </div>
+        <br>
         <th:block th:if="${query}">
-        <h2>Books found</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Authors</th>
-                <th>Published</th>
-                <th>Pages</th>
-                <th>Category</th>
-                <th>MyLibrary</th>
-            </tr>
-            </thead>
-            <tbody class="fixed-height">
-            <tr th:each="book : ${books}">
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.authors}"></td>
-                <td th:text="${book.publishedDate}"></td>
-                <td th:text="${book.pageCount}"></td>
-                <td th:text="${book.categories}"></td>
-                <td><div class="add-book-container">
-                    <button onclick="location.href='/librarian/add-book'">Add</button>
-                    </div></td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="pagination">
-            <br>
-            <a th:href="@{/librarian/books(query=${query}, page=0)}">&laquo;</a>
-            <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
-               th:href="@{/librarian/books(query=${query}, page=${p})}"
-               th:text="${p+1}" th:class="${p==currentPage} ? 'active' : ''"></a>
-            <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
-        </div>
+            <h2>Books found</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Authors</th>
+                    <th>Published</th>
+                    <th>Pages</th>
+                    <th>Category</th>
+                    <th>&nbsp;Details</th>
+                    <th>MyLibrary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.authors}"></td>
+                    <td th:text="${book.publishedDate}"></td>
+                    <td th:text="${book.pageCount}"></td>
+                    <td th:text="${book.categories}"></td>
+                    <td>
+                        <div class="add-book-container">
+                            <a th:href="${book.selfLink}">Check</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="add-book-container">
+                            <button onclick="location.href='/librarian/add-book'">Add</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <br>
+                <a th:href="@{/librarian/books(query=${query}, page=0)}">&laquo;</a>
+                <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
+                   th:href="@{/librarian/books(query=${query}, page=${p})}"
+                   th:text="${p+1}" th:class="${p==currentPage} ? 'active' : ''"></a>
+                <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
+            </div>
         </th:block>
     </div>
 </div>

@@ -25,13 +25,13 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
                     new com.google.api.client.http.javanet.NetHttpTransport(),
                     new com.google.api.client.json.jackson2.JacksonFactory(),
                     null)
-                    .setApplicationName("MyLibrarySearch")
+                    .setApplicationName("MyLibrary")
                     .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
                     .build();
 
             Volumes volumes = books.volumes().list(query)
                     .setStartIndex(startIndex)
-                    .setMaxResults(6L)
+                    .setMaxResults(3L)
                     .execute();
 
             List<Book> myBooks = new ArrayList<>();
@@ -64,6 +64,9 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
 
         List<String> categories = volume.getVolumeInfo().getCategories();
         book.setCategories(categories != null ? categories : Collections.singletonList("no data"));
+
+        String selfLink = volume.getSelfLink();
+        book.setSelfLink(selfLink);
 
         return book;
     }

@@ -22,4 +22,6 @@ public class Book {
 
     private String pageCount;
     private List<String> categories;
+
+    private String selfLink;
 }
