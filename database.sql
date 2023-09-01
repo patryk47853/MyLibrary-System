@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `mylibrary_system`;
+CREATE DATABASE IF NOT EXISTS `mylibrary_system`;
 
 USE `mylibrary_system`;
 
@@ -39,8 +39,6 @@ CREATE TABLE `users_roles` (
                                    ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-DROP TABLE IF EXISTS `library_cards`;
-
 CREATE TABLE `library_cards` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(80) DEFAULT NULL,
@@ -65,46 +63,6 @@ CREATE TABLE `books` (
                         `image_link` varchar(255) NOT NULL,
                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `authors` (
-                          `id` int(6) NOT NULL AUTO_INCREMENT,
-                          `name` varchar(255) NOT NULL,
-                          PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `book_authors` (
-                               `book_id` int(6) NOT NULL,
-                               `author_id` int(6) NOT NULL,
-                               PRIMARY KEY (`book_id`, `author_id`),
-                               KEY `book` (`book_id`),
-                               CONSTRAINT `FK_BOOK_AUTHOR_BOOK` FOREIGN KEY (`book_id`)
-                                   REFERENCES `book` (`id`)
-                                   ON DELETE CASCADE ON UPDATE NO ACTION,
-                               KEY `author` (`author_id`),
-                               CONSTRAINT `FK_BOOK_AUTHOR_AUTHOR` FOREIGN KEY (`author_id`)
-                                   REFERENCES `author` (`id`)
-                                   ON DELETE CASCADE ON UPDATE NO ACTION
-);
-
-CREATE TABLE `bookcategories` (
-                                `id` int(6) NOT NULL AUTO_INCREMENT,
-                                `name` varchar(255) NOT NULL,
-                                PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `book_bookcategories` (
-                                     `book_id` int(6) NOT NULL,
-                                     `bookcategory_id` int(6) NOT NULL,
-                                     PRIMARY KEY (`book_id`, `bookcategory_id`),
-                                     KEY `book` (`book_id`),
-                                     CONSTRAINT `FK_BOOK_BOOKCATEGORY_BOOK` FOREIGN KEY (`book_id`)
-                                         REFERENCES `book` (`id`)
-                                         ON DELETE CASCADE ON UPDATE NO ACTION,
-                                     KEY `bookcategory` (`bookcategory_id`),
-                                     CONSTRAINT `FK_BOOK_BOOKCATEGORY_BOOKCATEGORY` FOREIGN KEY (`bookcategory_id`)
-                                         REFERENCES `bookcategory` (`id`)
-                                         ON DELETE CASCADE ON UPDATE NO ACTION
-);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
