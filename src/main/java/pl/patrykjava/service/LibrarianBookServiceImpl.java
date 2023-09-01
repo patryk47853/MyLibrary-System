@@ -48,25 +48,30 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
         }
     }
 
-    private Book createBookFromVolume(Volume volume) {
+    @Override
+    public Book createBookFromVolume(Volume volume) {
         Book book = new Book();
 
-        book.setTitle(volume.getVolumeInfo().getTitle());
+        String title = volume.getVolumeInfo().getTitle();
+        book.setTitle(title != null ? title : "no data"); // there must be a title, but just in case it is better to check
 
         List<String> authors = volume.getVolumeInfo().getAuthors();
         book.setAuthors(authors != null ? authors : Collections.singletonList("no data"));
 
-        book.setPublishedDate(volume.getVolumeInfo().getPublishedDate());
+        String publishedDate = volume.getVolumeInfo().getPublishedDate();
+        book.setPublishedDate(publishedDate != null ? publishedDate : "no data");
 
         Integer pageCount = volume.getVolumeInfo().getPageCount();
-        String pageCountValue = pageCount != null && pageCount != 0 ? pageCount.toString() : "no data";
-        book.setPageCount(pageCountValue);
+        book.setPageCount(pageCount != null && pageCount != 0 ? pageCount.toString() : "no data");
 
         List<String> categories = volume.getVolumeInfo().getCategories();
         book.setCategories(categories != null ? categories : Collections.singletonList("no data"));
 
         String selfLink = volume.getSelfLink();
-        book.setSelfLink(selfLink);
+        book.setSelfLink(selfLink != null ? selfLink : "http://localhost:8080/home");
+
+        String description = volume.getVolumeInfo().getDescription();
+        book.setDescription(description != null ? description : "No description available.");
 
         return book;
     }

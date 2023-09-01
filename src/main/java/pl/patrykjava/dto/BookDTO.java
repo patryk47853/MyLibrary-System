@@ -17,4 +17,6 @@ public class BookDTO {
 
     private String pageCount;
     private List<String> categories;
+
+    private String description;
 }
