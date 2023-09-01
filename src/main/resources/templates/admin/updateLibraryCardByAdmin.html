@@ -15,7 +15,10 @@
 
 <div class="wrapper">
   <div class="container">
-    <div class="title"><span th:text="${libraryCard.getUser().username}"></span>'s Library Card</div>
+    <div class="title">
+      <span th:text="${libraryCard.getUser().username}"></span>'s Library Card
+      [ID: <span th:text="${libraryCard.getId()}"></span>]
+    </div>
     <div class="content">
       <div th:if="${param.success}">
         <div class="alert alert-success col-xs-offset-1 col-xs-10">
