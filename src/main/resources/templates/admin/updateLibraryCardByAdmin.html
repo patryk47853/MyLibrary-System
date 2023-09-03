@@ -4,7 +4,12 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>MyLibrary - Update profile</title>
+  <title>MyLibrary - Admin | Update Profile</title>
+  <script th:inline="javascript">
+    let username = /*[[${libraryCard.getUser().username}]]*/ 'user';
+    document.title = "MyLibrary - Admin | Update " + username + "'s profile";
+  </script>
+
 </head>
 
 <!-- CSS stylesheet for home.html -->

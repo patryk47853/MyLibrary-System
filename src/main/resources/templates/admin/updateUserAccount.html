@@ -4,7 +4,11 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>MyLibrary - Update account</title>
+  <title>MyLibrary - Admin | Update Account</title>
+  <script th:inline="javascript">
+    let username = /*[[${user.getUsername()}]]*/ 'user';
+    document.title = "MyLibrary - Admin | Update " + username + "'s account";
+  </script>
 </head>
 
 <!-- CSS stylesheet for home.html -->
