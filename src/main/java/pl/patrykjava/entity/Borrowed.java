@@ -1,24 +1,16 @@
+package pl.patrykjava.entity;
+
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import pl.patrykjava.entity.Book;
-import pl.patrykjava.entity.User;
 
 @Getter
 @Setter
@@ -34,9 +26,8 @@ public class Borrowed {
     @Column(name="id")
     private int id;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="books_id")
-    private Book book;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Borrowed> borrowedBooks;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="users_id")
