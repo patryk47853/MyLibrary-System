@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,9 +7,7 @@
     <title>MyLibrary - Librarian | Readers</title>
 </head>
 
-<!-- CSS stylesheet for home.html -->
 <link rel="stylesheet" href="/css/users.css">
-
 
 <body>
 <header th:replace="~{main/header :: header}"></header>
@@ -22,30 +21,33 @@
             </form>
         </div>
         <br>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Phone number</th>
-        <th>E-mail</th>
-        <th class="details-header">Details</th>
-    </tr>
-    <tr th:each="reader : ${readers}">
-        <td th:text="${reader.id}"></td>
-        <td th:text="${reader.firstName}"></td>
-        <td th:text="${reader.lastName}"></td>
-        <td th:text="${reader.phoneNumber}"></td>
-        <td th:text="${reader.phoneNumber}"></td>
-        <td><a th:href="@{/admin/users/{id}(id=${reader.id})}"><button>Show</button></a></td>
-    </tr>
-</table>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone number</th>
+                <th>E-mail</th>
+                <th class="details-header">Details</th>
+            </tr>
+            <tr th:each="reader : ${readers}">
+                <td th:text="${reader.id}"></td>
+                <td th:text="${reader.firstName}"></td>
+                <td th:text="${reader.lastName}"></td>
+                <td th:text="${reader.phoneNumber}"></td>
+                <td th:text="${reader.phoneNumber}"></td>
+                <td><a th:href="@{/admin/users/{id}(id=${reader.id})}">
+                    <button>Show</button>
+                </a></td>
+            </tr>
+        </table>
         <br>
         <div class="pagination">
             <a href="?page=0">&laquo;</a>
             <!-- Iterate to generate pagination links based on the total number of readers -->
             <th:block th:each="pageNumber : ${#numbers.sequence(0, (totalReaders / 5))}">
-                <a th:href="@{|?page=${pageNumber}|}" th:classappend="${libraryCards.number == pageNumber} ? active : ''" th:text="${pageNumber + 1}"></a>
+                <a th:href="@{|?page=${pageNumber}|}"
+                   th:classappend="${libraryCards.number == pageNumber} ? active : ''" th:text="${pageNumber + 1}"></a>
             </th:block>
             <a th:href="@{|?page=${(totalReaders / 5)}|}">&raquo;</a>
         </div>

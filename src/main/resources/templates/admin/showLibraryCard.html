@@ -1,60 +1,62 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
-  <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-  <head>
+
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8">
     <title>MyLibrary - Admin | Profile</title>
     <script th:inline="javascript">
-      let username = /*[[${libraryCard.getUser().username}]]*/ 'user';
-      document.title = "MyLibrary - Admin | " + username + "'s profile";
+        let username = /*[[${libraryCard.getUser().username}]]*/ 'user';
+        document.title = "MyLibrary - Admin | " + username + "'s profile";
     </script>
-  </head>
+</head>
 
-  <!-- CSS stylesheet for home.html -->
-  <link rel="stylesheet" href="/css/librarycard.css">
+<link rel="stylesheet" href="/css/librarycard.css">
 
 <body>
 <header th:replace="~{main/header :: header}"></header>
 
 <div class="wrapper">
-  <div class="container">
-    <div class="title">
-      <span th:text="${libraryCard.getUser().username}"></span>'s Library Card
-      [ID: <span th:text="${libraryCard.getId()}"></span>]
-    </div>
-    <div class="content">
-      <form th:action="@{/admin/library-cards/}" method="get" th:object="${libraryCard}" >
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">First name</span>
-            <input type="text" name="firstName" th:value="${libraryCard.firstName}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">Last name</span>
-            <input type="text" name="lastName" th:value="${libraryCard.lastName}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" name="phoneNumber" th:value="${libraryCard.phoneNumber}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">Address</span>
-            <input type="text" name="address" th:value="${libraryCard.address}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">Postal code</span>
-            <input type="text" name="postalCode" th:value="${libraryCard.postalCode}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">City</span>
-            <input type="text" name="city" th:value="${libraryCard.city}" readonly/>
-          </div>
+    <div class="container">
+        <div class="title">
+            <span th:text="${libraryCard.getUser().username}"></span>'s Library Card
+            [ID: <span th:text="${libraryCard.getId()}"></span>]
         </div>
-      </form>
-      <a th:href="@{/admin/update-user-profile/{id}(id=${libraryCard.id})}"><button>Edit</button></a>
+        <div class="content">
+            <form th:action="@{/admin/library-cards/}" method="get" th:object="${libraryCard}">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">First name</span>
+                        <input type="text" name="firstName" th:value="${libraryCard.firstName}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Last name</span>
+                        <input type="text" name="lastName" th:value="${libraryCard.lastName}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Phone Number</span>
+                        <input type="text" name="phoneNumber" th:value="${libraryCard.phoneNumber}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Address</span>
+                        <input type="text" name="address" th:value="${libraryCard.address}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Postal code</span>
+                        <input type="text" name="postalCode" th:value="${libraryCard.postalCode}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">City</span>
+                        <input type="text" name="city" th:value="${libraryCard.city}" readonly/>
+                    </div>
+                </div>
+            </form>
+            <a th:href="@{/admin/update-user-profile/{id}(id=${libraryCard.id})}">
+                <button>Edit</button>
+            </a>
+        </div>
     </div>
-  </div>
 </div>
 </body>
 

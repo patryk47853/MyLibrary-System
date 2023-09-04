@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
-  <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
-  <head>
+
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8">
     <title>MyLibrary - Admin | Account</title>
     <script th:inline="javascript">
-      let username = /*[[${user.getUsername()}]]*/ 'user';
-      document.title = "MyLibrary - Admin | " + username + "'s account";
+        let username = /*[[${user.getUsername()}]]*/ 'user';
+        document.title = "MyLibrary - Admin | " + username + "'s account";
     </script>
-  </head>
+</head>
 
-  <!-- CSS stylesheet for home.html -->
-  <link rel="stylesheet" href="/css/librarycard.css">
+<link rel="stylesheet" href="/css/librarycard.css">
 
 <body>
 <header th:replace="~{main/header :: header}"></header>
 
 <div class="wrapper">
-  <div class="container">
-    <div class="title">
-      <span th:text="${user.username}"></span>'s Account Details
-      [ID: <span th:text="${user.getId()}"></span>]
-    </div>
-    <div class="content">
-      <form th:action="@{/admin/accounts/}" method="get" th:object="${user}" >
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" name="username" th:value="${user.username}" readonly/>
-          </div>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" name="email" th:value="${user.email}" readonly/>
-          </div>
+    <div class="container">
+        <div class="title">
+            <span th:text="${user.username}"></span>'s Account Details
+            [ID: <span th:text="${user.getId()}"></span>]
         </div>
-      </form>
-      <a th:href="@{/admin/update-user-account/{id}(id=${user.id})}"><button>Edit</button></a>
+        <div class="content">
+            <form th:action="@{/admin/accounts/}" method="get" th:object="${user}">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        <input type="text" name="username" th:value="${user.username}" readonly/>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" name="email" th:value="${user.email}" readonly/>
+                    </div>
+                </div>
+            </form>
+            <a th:href="@{/admin/update-user-account/{id}(id=${user.id})}">
+                <button>Edit</button>
+            </a>
+        </div>
     </div>
-  </div>
 </div>
 </body>
 
