@@ -29,7 +29,7 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "main/home";
     }
 

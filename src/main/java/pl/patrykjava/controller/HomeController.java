@@ -35,7 +35,7 @@ public class HomeController {
 
     @PostMapping("/process-library-card")
     public String processCreatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
-                                    @AuthenticationPrincipal UserDetails currentUser) {
+                                             @AuthenticationPrincipal UserDetails currentUser) {
 
         libraryCardService.createLibraryCard(libraryCardDTO, currentUser);
 
@@ -44,7 +44,7 @@ public class HomeController {
 
     @GetMapping("/library-card")
     public String showLibraryCard(Model theModel,
-                              @AuthenticationPrincipal UserDetails currentUser) {
+                                  @AuthenticationPrincipal UserDetails currentUser) {
 
         LibraryCard libraryCard = libraryCardService
                 .getLibraryCardByUsername(currentUser.getUsername());
@@ -56,7 +56,7 @@ public class HomeController {
 
     @GetMapping("/update-library-card")
     public String updateLibraryCard(Model theModel,
-                                @AuthenticationPrincipal UserDetails currentUser) {
+                                    @AuthenticationPrincipal UserDetails currentUser) {
 
         LibraryCard libraryCard = libraryCardService
                 .getLibraryCardByUsername(currentUser.getUsername());
@@ -68,7 +68,7 @@ public class HomeController {
 
     @PostMapping("/process-update-library-card")
     public String processUpdatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
-                                       @AuthenticationPrincipal UserDetails currentUser) {
+                                             @AuthenticationPrincipal UserDetails currentUser) {
 
         User user = userRepository.findByUsername(currentUser.getUsername());
         libraryCardService.updateLibraryCard(libraryCardDTO, user, libraryCardRepository, userRepository);

@@ -14,16 +14,10 @@ import java.sql.Timestamp;
 public class LibraryCardDTO {
 
     private String firstName;
-
     private String lastName;
-
     private String phoneNumber;
-
     private String address;
-
     private String postalCode;
-
     private String city;
-
     private Timestamp createdAt;
 }

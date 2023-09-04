@@ -29,26 +29,26 @@ public class LibraryCard {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name="address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name="postal")
+    @Column(name = "postal")
     private String postalCode;
 
-    @Column(name="city")
+    @Column(name = "city")
     private String city;
 
     @Column(name = "created_at")

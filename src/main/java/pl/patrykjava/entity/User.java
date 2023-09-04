@@ -15,7 +15,7 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
 
     public User(String username, String email, String password, Timestamp createdAt) {
         this.username = username;
@@ -31,7 +31,7 @@ public class User{
     }
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -64,7 +64,7 @@ public class User{
     private Set<Role> roles = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
+            cascade = CascadeType.ALL,
             mappedBy = "user")
     private LibraryCard libraryCard;
 
