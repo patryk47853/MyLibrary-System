@@ -83,6 +83,32 @@
         background-image: linear-gradient(to right, #2575fc 0%,  #6a11cb 100%);
     }
 
+    .button-secondary {
+        background-image: linear-gradient(to right, yellow 0%, black 100%);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+    }
+
+    .button-secondary input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-image: linear-gradient(to right, yellow 0%, black 100%); /* Change colors here */
+    }
+
+    .button-secondary input:hover {
+        background-image: linear-gradient(to right, black 0%, yellow 100%); /* Change colors here */
+    }
+
     .wrapper {
         width: 960px;
         position: absolute;
