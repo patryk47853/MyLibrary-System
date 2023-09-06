@@ -34,10 +34,10 @@
                 <td th:text="${user.username}"></td>
                 <td th:text="${user.email}"></td>
                 <td><a th:href="@{/admin/accounts/{id}(id=${user.id})}">
-                    <button>Show</button>
+                    <button class="button-secondary">Show</button>
                 </a></td>
                 <td><a th:href="@{/admin/users/{id}(id=${user.id})}">
-                    <button>Show</button>
+                    <button class="button-secondary">Show</button>
                 </a></td>
             </tr>
         </table>
