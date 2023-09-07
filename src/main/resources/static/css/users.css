@@ -85,10 +85,8 @@
 
     .button-secondary {
         text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
-        background: #52c234;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        border: none;
+        background: rgb(204,251,63);
+        background: radial-gradient(circle, rgba(204,251,63,1) 0%, rgba(252,218,70,1) 100%);        border: none;
         border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease 0s;
@@ -105,22 +103,44 @@
         letter-spacing: 1px;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: #52c234;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: rgb(204, 251, 63);
+        background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
     }
-
     .button-secondary input:hover {
-        background: #52c234;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: rgb(204, 251, 63);
+        background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
+    }
+    .button-secondary:hover {
+        background: rgb(204, 251, 63);
+        background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
     }
 
-    .button-secondary:hover {
-        background: #52c234;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    .button-third {
+        background: rgb(251,63,116);
+        background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
     }
+
+    .button-third input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgb(251,63,116);
+        background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
+    .button-third input:hover {
+        background: rgb(251,63,116);
+        background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
+    .button-third:hover {
+        background: rgb(251,63,116);
+        background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
 
     .wrapper {
         width: 960px;
