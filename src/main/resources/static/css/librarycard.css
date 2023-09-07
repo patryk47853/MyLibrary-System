@@ -114,6 +114,34 @@ button:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
+
+.button-third {
+    background: rgb(251,63,116);
+    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);        border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button-third input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgb(251,63,116);
+    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
+.button-third input:hover {
+    background: rgb(251,63,116);
+    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
+.button-third:hover {
+    background: rgb(251,63,116);
+    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
+
 .wrapper {
     width: 960px;
     position: absolute;
