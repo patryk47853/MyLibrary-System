@@ -40,12 +40,12 @@
                     <td th:text="${book.categories}"></td>
                     <td>
                         <div class="add-book-container">
-                            <a th:href="${book.selfLink}">Check</a>
+                            <a class="yellow-button" th:href="${book.selfLink}">Check</a>
                         </div>
                     </td>
                     <td>
                         <div class="add-book-container">
-                            <button onclick="location.href='/librarian/add-book'">Add</button>
+                            <button class="red-button" onclick="location.href='/librarian/add-book'">Add</button>
                         </div>
                     </td>
                 </tr>
