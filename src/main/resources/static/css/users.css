@@ -142,6 +142,82 @@
         background: rgb(251,63,116);
         background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
 
+    /* Define the common button styles */
+    .red-button {
+        text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        background-color: #990000;
+        background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);        color: white; /* Set the font color to white */
+    }
+
+    /* Apply the common button styles to the input inside the red button */
+    .red-button input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: inherit; /* Inherit the background from the parent (.red-button) */
+    }
+
+    /* Hover effect for the red button */
+    .red-button:hover {
+        background-color: #990000;
+        background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);    }
+
+    /* Hover effect for the input inside the red button */
+    .red-button input:hover {
+        background-color: #990000;
+        background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);    }
+
+    /* Define the yellow-button styles */
+    .yellow-button {
+        text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+        background-color: #f3fa14;
+        background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+        color: white; /* Set the font color to white */
+    }
+
+    /* Apply the yellow-button styles to the input inside the yellow button */
+    .yellow-button input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: inherit; /* Inherit the background from the parent (.yellow-button) */
+    }
+
+    /* Hover effect for the yellow button */
+    .yellow-button:hover {
+        background-color: #f3fa14;
+        background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+    }
+
+    /* Hover effect for the input inside the yellow button */
+    .yellow-button input:hover {
+        background-color: #f3fa14;
+        background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+    }
+
+
     .wrapper {
         width: 960px;
         position: absolute;
