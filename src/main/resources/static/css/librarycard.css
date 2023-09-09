@@ -71,6 +71,7 @@ body {
 }
 
 button {
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
     padding: 9px 25px;
     background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
     border: none;
@@ -81,6 +82,61 @@ button {
 
 button:hover {
     background-image: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
+}
+
+.button-search {
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
+    background-color: #f7accf;
+    background-image: linear-gradient(147deg, #f7accf 0%, #ff1053 74%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button-search {
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
+    background-color: #63d471;
+    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button-search input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #63d471;
+    background-image: linear-gradient(315deg, #63d471 0%, #233329 74%);
+}
+
+.button-search input:hover {
+    background-color: #233329; /* Inverted color */
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+}
+
+.button-search:hover {
+    background-color: #233329; /* Inverted color */
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+}
+
+.button-show {
+    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
+    background-color: #045de9;
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
 
 .button-show input {
