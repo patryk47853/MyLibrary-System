@@ -6,7 +6,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 li, a, button {
@@ -62,11 +62,11 @@ body {
     background-color: #000000;
 }
 
-.nav_links li a{
+.nav_links li a {
     transition: all 0.3s ease 0s;
 }
 
-.nav_links li a:hover{
+.nav_links li a:hover {
     color: yellow;
 }
 
@@ -80,13 +80,14 @@ button {
 }
 
 button:hover {
-    background-image: linear-gradient(to right, #2575fc 0%,  #6a11cb 100%);
+    background-image: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
 }
 
 .button-secondary {
     text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
-    background: rgb(204,251,63);
-    background: radial-gradient(circle, rgba(204,251,63,1) 0%, rgba(252,218,70,1) 100%);        border: none;
+    background: rgb(204, 251, 63);
+    background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
+    border: none;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
@@ -106,10 +107,12 @@ button:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
+
 .button-secondary input:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
+
 .button-secondary:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
@@ -117,8 +120,8 @@ button:hover {
 
 .button-third {
     text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
-    background: rgb(251,63,116);
-    background: radial-gradient(circle, rgba(252,218,70,1) 0%, rgba(251,63,116,1) 100%);
+    background: rgb(251, 63, 116);
+    background: radial-gradient(circle, rgba(252, 218, 70, 1) 0%, rgba(251, 63, 116, 1) 100%);
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
@@ -134,16 +137,20 @@ button:hover {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: rgb(251,63,116);
-    background: radial-gradient(circle, rgba(252,218,70,1) 0%, rgba(251,63,116,1) 100%);}
-.button-third input:hover {
-    background: rgb(251,63,116);
-    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);    }
-.button-third:hover {
-    background: rgb(251,63,116);
-    background: radial-gradient(circle, rgba(251,63,116,1) 0%, rgba(252,218,70,1) 100%);}
+    background: rgb(251, 63, 116);
+    background: radial-gradient(circle, rgba(252, 218, 70, 1) 0%, rgba(251, 63, 116, 1) 100%);
+}
 
-/* Define the common button styles */
+.button-third input:hover {
+    background: rgb(251, 63, 116);
+    background: radial-gradient(circle, rgba(251, 63, 116, 1) 0%, rgba(252, 218, 70, 1) 100%);
+}
+
+.button-third:hover {
+    background: rgb(251, 63, 116);
+    background: radial-gradient(circle, rgba(251, 63, 116, 1) 0%, rgba(252, 218, 70, 1) 100%);
+}
+
 .red-button {
     text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
     border: none;
@@ -151,10 +158,10 @@ button:hover {
     cursor: pointer;
     transition: all 0.3s ease 0s;
     background-color: #990000;
-    background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);        color: white; /* Set the font color to white */
+    background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);
+    color: white;
 }
 
-/* Apply the common button styles to the input inside the red button */
 .red-button input {
     height: 100%;
     width: 100%;
@@ -166,7 +173,7 @@ button:hover {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: inherit; /* Inherit the background from the parent (.red-button) */
+    background: inherit;
 }
 
 .red-button {
@@ -211,7 +218,7 @@ button:hover {
     cursor: pointer;
     transition: all 0.3s ease 0s;
     background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
     color: white;
 }
 
@@ -231,12 +238,12 @@ button:hover {
 
 .yellow-button:hover {
     background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
 }
 
 .yellow-button input:hover {
     background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243,250,20,1) 0%, rgba(195,232,82,1) 100%);
+    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
 }
 
 .wrapper {
@@ -247,21 +254,23 @@ button:hover {
     left: 50%;
 }
 
-.container{
+.container {
     max-width: 960px;
     width: 100%;
     background-color: #fff;
     padding: 25px 30px;
     border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-    margin:auto;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    margin: auto;
 }
-.container .title{
+
+.container .title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
-.container .title::before{
+
+.container .title::before {
     content: "";
     position: absolute;
     left: 0;
@@ -271,22 +280,26 @@ button:hover {
     border-radius: 5px;
     background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
-.content form .user-details{
+
+.content form .user-details {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0 12px 0;
 }
-form .user-details .input-box{
+
+form .user-details .input-box {
     margin-bottom: 15px;
     width: calc(100% / 2 - 20px);
 }
-form .input-box span.details{
+
+form .input-box span.details {
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
 }
-.user-details .input-box input{
+
+.user-details .input-box input {
     height: 45px;
     width: 100%;
     outline: none;
@@ -297,26 +310,31 @@ form .input-box span.details{
     border-bottom-width: 2px;
     transition: all 0.3s ease;
 }
+
 .user-details .input-box input:focus,
-.user-details .input-box input:valid{
+.user-details .input-box input:valid {
     border-color: #9b59b6;
 }
-form .gender-details .gender-title{
+
+form .gender-details .gender-title {
     font-size: 20px;
     font-weight: 500;
 }
-form .category{
+
+form .category {
     display: flex;
     width: 80%;
-    margin: 14px 0 ;
+    margin: 14px 0;
     justify-content: space-between;
 }
-form .category label{
+
+form .category label {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
-form .category label .dot{
+
+form .category label .dot {
     height: 18px;
     width: 18px;
     border-radius: 50%;
@@ -325,20 +343,24 @@ form .category label .dot{
     border: 5px solid transparent;
     transition: all 0.3s ease;
 }
+
 #dot-1:checked ~ .category label .one,
 #dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three{
+#dot-3:checked ~ .category label .three {
     background: #9b59b6;
     border-color: #d9d9d9;
 }
-form input[type="radio"]{
+
+form input[type="radio"] {
     display: none;
 }
-form .button{
+
+form .button {
     height: 45px;
     margin: 35px 0
 }
-form .button input{
+
+form .button input {
     height: 100%;
     width: 100%;
     border-radius: 5px;
@@ -351,31 +373,37 @@ form .button input{
     transition: all 0.3s ease;
     background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
-form .button input:hover{
-    /* transform: scale(0.99); */
-    background-image: linear-gradient(to right, #2575fc 0%,  #6a11cb 100%);
+
+form .button input:hover {
+    background-image: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
 }
-@media(max-width: 584px){
-    .container{
+
+@media (max-width: 584px) {
+    .container {
         max-width: 100%;
     }
-    form .user-details .input-box{
+
+    form .user-details .input-box {
         margin-bottom: 15px;
         width: 100%;
     }
-    form .category{
+
+    form .category {
         width: 100%;
     }
-    .content form .user-details{
+
+    .content form .user-details {
         max-height: 300px;
         overflow-y: scroll;
     }
-    .user-details::-webkit-scrollbar{
+
+    .user-details::-webkit-scrollbar {
         width: 5px;
     }
 }
-@media(max-width: 459px){
-    .container .content .category{
+
+@media (max-width: 459px) {
+    .container .content .category {
         flex-direction: column;
     }
 }
