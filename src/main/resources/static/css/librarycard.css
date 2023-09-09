@@ -83,17 +83,7 @@ button:hover {
     background-image: linear-gradient(to right, #2575fc 0%, #6a11cb 100%);
 }
 
-.button-secondary {
-    text-shadow: rgb(0, 0, 0) 2px 0px 0px, rgb(0, 0, 0) 1.755165px 0.958851px 0px, rgb(0, 0, 0) 1.080605px 1.682942px 0px, rgb(0, 0, 0) 0.141474px 1.99499px 0px, rgb(0, 0, 0) -0.832294px 1.818595px 0px, rgb(0, 0, 0) -1.602287px 1.196944px 0px, rgb(0, 0, 0) -1.979985px 0.28224px 0px, rgb(0, 0, 0) -1.872913px -0.701566px 0px, rgb(0, 0, 0) -1.307287px -1.513605px 0px, rgb(0, 0, 0) -0.421592px -1.95506px 0px, rgb(0, 0, 0) 0.567324px -1.917849px 0px, rgb(0, 0, 0) 1.41734px -1.411081px 0px, rgb(0, 0, 0) 1.920341px -0.558831px 0px;
-    background: rgb(204, 251, 63);
-    background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-.button-secondary input {
+.button-show input {
     height: 100%;
     width: 100%;
     border-radius: 5px;
@@ -108,12 +98,12 @@ button:hover {
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
 
-.button-secondary input:hover {
+.button-show input:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
 
-.button-secondary:hover {
+.button-show:hover {
     background: rgb(204, 251, 63);
     background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
 }
