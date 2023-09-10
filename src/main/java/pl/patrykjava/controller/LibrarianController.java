@@ -51,6 +51,12 @@ public class LibrarianController {
         return "librarian/librarianSearchBooks";
     }
 
+    @GetMapping("/check-details")
+    public String checkBookDetails() {
+
+        return "librarian/librarianCheckBookDetails";
+    }
+
     @GetMapping("/readers")
     public String showReaders(@RequestParam(value = "phoneNumber", required = false) String phoneNumber, @PageableDefault(size = 5) Pageable pageable, Model theModel) {
         Page<LibraryCard> libraryCards;
