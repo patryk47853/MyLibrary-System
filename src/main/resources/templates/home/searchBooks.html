@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MyLibrary - Search Books</title>
+    <link rel="stylesheet" href="/css/users.css">
+
 </head>
 <body>
-
+<header th:replace="~{main/header :: header}"></header>
+<div class="wrapper">
+    <div class="container mt-3">
+        <div class="search-container">
+            <form action="/librarian/books" method="get">
+                <input type="text" placeholder="Search books..." name="query" required>
+                <button class="button-search" type="submit">Search</button>
+            </form>
+        </div>
+        <br>
+        <th:block th:if="${query}">
+            <h2>Books found</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author(s)</th>
+                    <th>Published</th>
+                    <th>Pages</th>
+                    <th>Category</th>
+                    <th>&nbsp;Details</th>
+                    <th>MyLibrary</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.authors}"></td>
+                    <td th:text="${book.publishedDate}"></td>
+                    <td th:text="${book.pageCount}"></td>
+                    <td th:text="${book.categories}"></td>
+                    <td>
+                        <div class="add-book-container">
+                            <a th:href="${book.selfLink}">
+                                <button class="yellow-button">Check</button>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="add-book-container">
+                            <button class="red-button" onclick="location.href='/librarian/add-book'">Add</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <br>
+                <a th:href="@{/librarian/books(query=${query}, page=0)}">&laquo;</a>
+                <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
+                   th:href="@{/librarian/books(query=${query}, page=${p})}"
+                   th:text="${p+1}" th:class="${p==currentPage} ? 'active' : ''"></a>
+                <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
+            </div>
+        </th:block>
+    </div>
+</div>
 </body>
 </html>

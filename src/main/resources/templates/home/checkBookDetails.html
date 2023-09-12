@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>MyLibrary - Book Details</title>
 </head>
+
+<link rel="stylesheet" href="/css/users.css">
+
 <body>
 
+<header th:replace="~{main/header :: header}"></header>
+
+<div class="wrapper">
+  <div class="container mt-3">
+    <a href="javascript:history.back()" style="color: red">
+      <button class="button-show">&#8592; Return</button>
+    </a>
+    <td>
+      <div class="container" style="margin-top: 50px;">
+        <div class="row">
+          <div class="col-9">
+            <div class="row"></h2></div>
+            <div class="row"><b>Authors:</b> &nbsp;</div>
+            <div class="row"><b>Status:</b> &nbsp; <span>?</span>
+            </div>
+            <div class="row"><b>Publisher:</b> &nbsp;</div>
+            <div class="row"><b>Published date:</b> &nbsp;</div>
+            <div class="row"><b>Pages:</b> &nbsp;</div>
+            <div class="row"><b>Average Rating:</b> &nbsp;</div>
+            <div class="row align-items-center">
+              <br>
+              <div class="col-4">
+                <button type="button" class="red-button" data-toggle="modal"
+                        data-target="#reserveModal">Add to library
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</td>
 </body>
 </html>
