@@ -53,7 +53,7 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
         Book book = new Book();
 
         String title = volume.getVolumeInfo().getTitle();
-        book.setTitle(title != null ? title : "no data"); // there must be a title, but just in case it is better to check
+        book.setTitle(title != null ? title : "no data");
 
         List<String> authors = volume.getVolumeInfo().getAuthors();
         book.setAuthors(authors != null ? authors : Collections.singletonList("no data"));

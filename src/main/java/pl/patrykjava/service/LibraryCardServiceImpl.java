@@ -38,7 +38,6 @@ public class LibraryCardServiceImpl implements LibraryCardService {
             return "templates/error";
         }
 
-        // Perform the necessary operations to create the library card
         save(libraryCardDTO);
 
         return "success";

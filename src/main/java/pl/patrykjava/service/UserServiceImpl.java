@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
                 userDTO.getCreatedAt()
         );
 
-        // add USER role when processing registration
+        // Add USER role when processing registration
         Role userRole = roleRepository.findByName("USER");
         user.addRole(userRole);
 
