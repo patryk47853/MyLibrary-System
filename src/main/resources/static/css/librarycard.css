@@ -120,13 +120,13 @@ button:hover {
 }
 
 .button-search input:hover {
-    background-color: #233329; /* Inverted color */
-    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+    background-color: #233329;
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
 }
 
 .button-search:hover {
-    background-color: #233329; /* Inverted color */
-    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+    background-color: #233329;
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
 }
 
 .button-show {

@@ -110,13 +110,14 @@ button:hover {
 }
 
 .button-search input:hover {
-    background-color: #233329; /* Inverted color */
-    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+    background-color: #233329;
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
 }
 
 .button-search:hover {
-    background-color: #233329; /* Inverted color */
-    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%); /* Inverted gradient */
+    background-color: #233329;
+    background-image: linear-gradient(315deg, #233329 0%, #63d471 74%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .button-show {
@@ -140,18 +141,15 @@ button:hover {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: rgb(204, 251, 63);
-    background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
 }
 
 .button-show input:hover {
-    background: rgb(204, 251, 63);
-    background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
 }
 
 .button-show:hover {
-    background: rgb(204, 251, 63);
-    background: radial-gradient(circle, rgba(204, 251, 63, 1) 0%, rgba(252, 218, 70, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
 }
 
 .button-edit {
@@ -215,6 +213,7 @@ button:hover {
 .red-button:hover {
     background-color: #990000;
     background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .red-button input:hover {
@@ -228,8 +227,7 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
     color: white;
 }
 
@@ -248,13 +246,12 @@ button:hover {
 }
 
 .yellow-button:hover {
-    background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .yellow-button input:hover {
-    background-color: #f3fa14;
-    background-image: radial-gradient(circle, rgba(243, 250, 20, 1) 0%, rgba(195, 232, 82, 1) 100%);
+    background: linear-gradient(109.6deg, rgb(244, 253, 0) 11.2%, rgb(255, 219, 47) 100.2%);
 }
 
 .wrapper {
