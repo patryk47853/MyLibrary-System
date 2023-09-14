@@ -30,11 +30,15 @@ banner {
 
 header {
     display: flex;
+    position: fixed;
     justify-content: flex-start;
+    height: 73px;
     align-items: center;
     padding: 12px 10%;
     background-color: #000000;
     width: 100%;
+    z-index: 9999;
+    top: 0;
 }
 
 body {
@@ -43,6 +47,7 @@ body {
     align-items: flex-start;
     justify-content: center;
     background-color: whitesmoke;
+    padding-top: 60px;
 }
 
 .logo {
