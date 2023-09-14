@@ -84,8 +84,10 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
         String title = volume.getVolumeInfo().getTitle();
         book.setTitle(title != null ? title : "no data");
 
-        String coverImageUrl = volume.getVolumeInfo().getImageLinks().getMedium();
-        book.setCoverImageUrl(coverImageUrl != null ? coverImageUrl : "https://example.com/default-cover-image.jpg");
+        String coverImageUrl = "https://upload.wikimedia.org/wikipedia/commons/9/9b/No_cover.JPG";
+        Volume.VolumeInfo.ImageLinks imageLinks = volume.getVolumeInfo().getImageLinks();
+        if(imageLinks != null) coverImageUrl = imageLinks.getThumbnail();
+        book.setCoverImageUrl(coverImageUrl != null ? coverImageUrl : "https://upload.wikimedia.org/wikipedia/commons/9/9b/No_cover.JPG");
 
         List<String> authors = volume.getVolumeInfo().getAuthors();
         book.setAuthors(authors != null ? authors : Collections.singletonList("no data"));
