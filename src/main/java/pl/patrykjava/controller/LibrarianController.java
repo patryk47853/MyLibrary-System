@@ -52,7 +52,13 @@ public class LibrarianController {
     }
 
     @GetMapping("/check-details")
-    public String checkBookDetails() {
+    public String checkBookDetails(@RequestParam(value = "query") String query, Model model) {
+        Book book = new Book();
+
+        if (query != null) book = librarianBookService.searchBookByGoogleBooksId(query);
+
+        model.addAttribute("query", query);
+        model.addAttribute("book", book);
 
         return "librarian/librarianCheckBookDetails";
     }
