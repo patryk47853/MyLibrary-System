@@ -20,11 +20,23 @@ public class Book {
     @CollectionTable(name = "authors", joinColumns = @JoinColumn(name = "book_id"))
     private List<String> authors;
 
+    @Column(name = "cover_image_url")
+    private String coverImageUrl;
+
+    @Column(name = "publisher")
+    private String publisher;
+
     @Column(name = "publishedDate")
     private String publishedDate;
 
     @Column(name = "pageCount")
     private String pageCount;
+
+    @Column(name = "google_books_id")
+    private String googleBooksId;
+
+    @Column(name = "average_rating")
+    private Double averageRating;
 
     @ElementCollection
     @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "book_id"))
