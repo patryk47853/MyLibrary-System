@@ -9,5 +9,8 @@ import java.util.List;
 public interface LibrarianBookService {
 
     List<Book> searchBooks(@RequestParam String query, Long startIndex);
+
+    Book searchBookByGoogleBooksId(String googleBooksId);
+
     Book createBookFromVolume(Volume volume);
 }
