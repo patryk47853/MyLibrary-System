@@ -40,7 +40,7 @@
                     <td th:text="${book.categories}"></td>
                     <td>
                         <div class="add-book-container">
-                            <a th:href="${book.selfLink}">
+                            <a th:href="@{/librarian/check-details(query=${book.googleBooksId})}">
                                 <button class="yellow-button">Check</button>
                             </a>
                         </div>
