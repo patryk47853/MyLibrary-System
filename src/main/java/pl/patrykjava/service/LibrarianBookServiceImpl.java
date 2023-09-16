@@ -20,15 +20,10 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
 
     @Override
     public List<Book> searchBooks(String query, Long startIndex) {
-        try {
-            Books books = new Books.Builder(
-                    new com.google.api.client.http.javanet.NetHttpTransport(),
-                    new com.google.api.client.json.jackson2.JacksonFactory(),
-                    null)
-                    .setApplicationName("MyLibrary")
-                    .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
-                    .build();
+        Books books = buildBooksClient();
+        if (books == null) return null;
 
+        try {
             Volumes volumes = books.volumes().list(query)
                     .setStartIndex(startIndex)
                     .setMaxResults(3L)
@@ -50,24 +45,16 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
 
     @Override
     public Book searchBookByGoogleBooksId(String googleBooksId) {
-        try {
-            Books books = new Books.Builder(
-                    new com.google.api.client.http.javanet.NetHttpTransport(),
-                    new com.google.api.client.json.jackson2.JacksonFactory(),
-                    null)
-                    .setApplicationName("MyLibrary")
-                    .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
-                    .build();
+        Books books = buildBooksClient();
+        if (books == null) return null;
 
-            // Use the Google Books ID to retrieve the book
+        try {
             Volume volume = books.volumes().get(googleBooksId).execute();
 
             if (volume != null) {
-                // Create a Book object from the Volume
                 Book book = createBookFromVolume(volume);
                 return book;
             } else {
-                // No book found with the provided Google Books ID
                 return null;
             }
         } catch (Exception e) {
@@ -118,5 +105,20 @@ public class LibrarianBookServiceImpl implements LibrarianBookService {
 
 
         return book;
+    }
+
+    private Books buildBooksClient() {
+        try {
+            return new Books.Builder(
+                    new com.google.api.client.http.javanet.NetHttpTransport(),
+                    new com.google.api.client.json.jackson2.JacksonFactory(),
+                    null)
+                    .setApplicationName("MyLibrary")
+                    .setGoogleClientRequestInitializer(new BooksRequestInitializer(apiKey))
+                    .build();
+        } catch (Exception e) {
+            System.err.println("Exception while building Books client: " + e);
+            return null;
+        }
     }
 }
