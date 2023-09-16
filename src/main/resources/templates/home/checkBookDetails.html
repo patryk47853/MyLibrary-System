@@ -10,34 +10,44 @@
 <body>
 
 <header th:replace="~{main/header :: header}"></header>
-
+<br><br>
 <div class="wrapper">
   <div class="container mt-3">
     <a href="javascript:history.back()" style="color: red">
       <button class="button-show">&#8592; Return</button>
     </a>
     <td>
-      <div class="container" style="margin-top: 50px;">
+      <br>
+      <div class="container" style="margin-top: 20px;">
         <div class="row">
           <div class="col-9">
-            <div class="row"></h2></div>
-            <div class="row"><b>Authors:</b> &nbsp;</div>
-            <div class="row"><b>Status:</b> &nbsp; <span>?</span>
+            <div class="row">
+              <img th:src="${book.coverImageUrl}" alt="Book Cover">
             </div>
-            <div class="row"><b>Publisher:</b> &nbsp;</div>
-            <div class="row"><b>Published date:</b> &nbsp;</div>
-            <div class="row"><b>Pages:</b> &nbsp;</div>
-            <div class="row"><b>Average Rating:</b> &nbsp;</div>
+            <div class="row"><h2 th:text="${book.title}"></h2></div>
+            <div class="row"><b>Authors:</b> <span th:text="${book.authors}"></span></div>
+            <div class="row"><b>Status:</b> <span>?</span>
+            </div>
+            <div class="row"><b>Publisher:</b> <span th:text="${book.publisher}"></span></div>
+            <div class="row"><b>Published date:</b> <span th:text="${book.publishedDate}"></span></div>
+            <div class="row"><b>Pages:</b> <span th:text="${book.pageCount}"></span></div>
+            <div class="row"><b>Average Rating:</b> <span th:text="${book.averageRating}"></span></div>
             <div class="row align-items-center">
               <br>
+              <br>
               <div class="col-4">
-                <button type="button" class="red-button" data-toggle="modal"
-                        data-target="#reserveModal">Add to library
+                <button type="button" class="yellow-button" data-toggle="modal"
+                        data-target="#reserveModal">Reserve
                 </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="container" style="margin-top: 50px;">
+        <div class="row"><b>Categories:</b> <span th:text="${book.categories}"></span></div>
+        <br>
+        <div class="row"><b>Description:</b> <span th:text="${book.description}"></span></div>
       </div>
   </div>
 </div>
