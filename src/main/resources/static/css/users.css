@@ -49,6 +49,13 @@ body {
     padding-top: 60px;
 }
 
+img {
+    float: left;
+    border: 3px solid #000000;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
 .logo {
     cursor: pointer;
     margin-right: auto;
