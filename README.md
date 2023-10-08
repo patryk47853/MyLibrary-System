@@ -11,7 +11,28 @@
 
 ## <a name="description"></a> 📝 Description
 
-TO-DO...
+### Overview
+
+Welcome to MyLibrary System - a library management system.
+
+This is my first major and more complex project, which has provided me with valuable experience, knowledge, and significantly improved my learning process. It has allowed me to grasp various technologies and the underlying business logic. Currently, the project is still in the beta phase, although many crucial aspects have already been coded. You can find the current capabilities of my application in the ["Key Features"](#features) section, while the ["TO-DO"](#todo) section contains a list of items that will be implemented in the final version of this service.
+
+The idea of creating such a service emerged rather serendipitously when I was contemplating a unique project that would allow me to independently implement both the business logic and the appearance and functionality of the application.
+
+This project also provided me with the opportunity to explore and utilize a wide range of frameworks and tools that are commonly used in daily work, allowing me to gain practical experience with them.
+
+There is still some work ahead on this project, but I am satisfied with the progress I have made so far.
+
+Thank you for your time, and if you're reading this - I wish you a wonderful day! 😊
+
+### Discover the Features
+
+📖 User-Focused Experience: Our system is based on four distinct roles:
+
+* Users 📇: Anyone passionate about books can apply for a library card to become a reader and have access to all the essential features of our service.
+* Readers 📚: With a library card, readers can explore our extensive collection and enjoy the full range of benefits our library has to offer.
+* Librarians 📋: A select group entrusted with the responsibility to not only add new books to our library but also to facilitate the borrowing and returning process. They serve as the frontline heroes in managing the library's operations. Additionally, they play a pivotal role in ensuring smooth transactions, including handling payments for any overdue books.
+* Admins 👩‍💼: These proficient individuals wield the power to administer the system with finesse. They have the authority to add, edit, and deactivate user accounts, maintaining the integrity of our library's operations.
 
 ## <a name="technologies"></a> 🔧 Technologies & Frameworks
 
