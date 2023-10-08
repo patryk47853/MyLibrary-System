@@ -2,11 +2,18 @@
 
 <img src="screenshots/book.svg" alt="logo" align="center" width="130">
 
-## 📝 Description
+* [📝 Description](#description)
+* [🔧 Technologies & Frameworks](#technologies)
+* [✨ Key Features](#features)
+* [🚀 How to Run?](#howtorun)
+* [📸 Screenshots](#screenshots)
+* [📋 TO-DO List](#todo)
+
+## <a name="description"></a> 📝 Description
 
 TO-DO...
 
-## 🔧 Technologies & Frameworks
+## <a name="technologies"></a> 🔧 Technologies & Frameworks
 
 MyLibrary System is a fusion of popular technologies and frameworks:
 
@@ -31,7 +38,7 @@ MyLibrary System is a fusion of popular technologies and frameworks:
 These enchanting tools come together to power up our library management system. 📜📚✨
 
 
-## ✨ Key Features
+## <a name="features"></a> ✨ Key Features
 
 Our library system comes packed with these incredible features:
 
@@ -49,7 +56,11 @@ Our library system comes packed with these incredible features:
 
 These features come together to create a library experience like no other! 📖🌟
 
-## 📋 TO-DO List
+## <a name="howtorun"></a> 🚀 How to Run?
+
+## <a name="screenshots"></a> 📸 Screenshots
+
+## <a name="todo"></a> 📋 TO-DO List
 
 - [x] Implement user authentication and authorization using Spring Security.
 - [x] Enable CRUD operations for users
