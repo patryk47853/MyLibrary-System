@@ -39,15 +39,6 @@ CREATE TABLE `users_roles` (
                                    ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE books (
-                       id INT AUTO_INCREMENT PRIMARY KEY,
-                       title VARCHAR(255),
-                       publishedDate VARCHAR(50),
-                       pageCount VARCHAR(20),
-                       selfLink VARCHAR(255),
-                       description TEXT
-);
-
 CREATE TABLE `library_cards` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(80) DEFAULT NULL,
