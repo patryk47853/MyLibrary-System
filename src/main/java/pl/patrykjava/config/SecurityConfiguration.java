@@ -51,7 +51,7 @@ public class SecurityConfiguration {
                 .requestMatchers(login).permitAll()
                 .requestMatchers(profile).permitAll()
                 .requestMatchers(libraryCard).hasAnyAuthority("USER")
-                .requestMatchers("/home").hasAnyAuthority("USER", "READER")
+                .requestMatchers("/home").hasAnyAuthority("ADMIN", "LIBRARIAN", "USER", "READER")
                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .requestMatchers("/librarian/**").hasAnyAuthority("ADMIN", "LIBRARIAN")
                 .anyRequest().authenticated();

@@ -23,16 +23,16 @@
         <div class="row">
             <div class="col-md-3 sidebar">
                 <div class="list-group">
-                    <li sec:authorize="hasAuthority('READER')"><a href="/librarian/dashboard" class="list-group-item">
+                    <li sec:authorize="hasAuthority('ADMIN') or hasAuthority('LIBRARIAN')"><a href="/librarian/dashboard" class="list-group-item">
                         Dashboard
                     </a>
-                    <li sec:authorize="hasAuthority('READER')"><a href="/librarian/books" class="list-group-item">
+                    <li sec:authorize="hasAuthority('ADMIN') or hasAuthority('LIBRARIAN')"><a href="/librarian/books" class="list-group-item">
                         Find new books
                     </a>
-                    <li sec:authorize="hasAuthority('READER')"><a href="/librarian/borrowed" class="list-group-item">
+                    <li sec:authorize="hasAuthority('ADMIN') or hasAuthority('LIBRARIAN')"><a href="/librarian/borrowed" class="list-group-item">
                         Borrowed books
                     </a>
-                    <li sec:authorize="hasAuthority('READER')"><a href="/librarian/readers" class="list-group-item">
+                    <li sec:authorize="hasAuthority('ADMIN') or hasAuthority('LIBRARIAN')"><a href="/librarian/readers" class="list-group-item">
                         List of readers
                     </a>
                 </div>
