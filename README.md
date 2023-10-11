@@ -92,7 +92,15 @@ Once you have your API key, open the application.properties file and locate the 
 
 * ### <a name="database"></a> Database
 
-In [MySQL Workbench](https://www.mysql.com/products/workbench/) go to:
+1. Please visit "application.properties" file and update those fields:
+
+`spring.datasource.username=YOUR_USERNAME`
+<br>
+`spring.datasource.password=YOUR_PASSWORD`
+
+to your actual MySQL Workbench data.
+
+2. In [MySQL Workbench](https://www.mysql.com/products/workbench/) go to:
 
 File -> Run SQL Script...
 
