@@ -10,8 +10,14 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "books")
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
     @Column(name = "title")
     private String title;
@@ -26,10 +32,10 @@ public class Book {
     @Column(name = "publisher")
     private String publisher;
 
-    @Column(name = "publishedDate")
+    @Column(name = "published_date")
     private String publishedDate;
 
-    @Column(name = "pageCount")
+    @Column(name = "page_count")
     private String pageCount;
 
     @Column(name = "google_books_id")
@@ -42,7 +48,7 @@ public class Book {
     @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "book_id"))
     private List<String> categories;
 
-    @Column(name = "selfLink")
+    @Column(name = "self_link")
     private String selfLink;
 
     @Column(name = "description")
