@@ -40,6 +40,18 @@ CREATE TABLE users_roles
     FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
+CREATE TABLE categories
+(
+    id   INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE authors
+(
+    id   INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE books
 (
     id              INT PRIMARY KEY AUTO_INCREMENT,
@@ -58,17 +70,24 @@ CREATE TABLE books
     FOREIGN KEY (author_id) REFERENCES authors (id)
 );
 
-CREATE TABLE categories
+CREATE TABLE book_authors
 (
-    id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    book_id   INT,
+    author_id INT,
+    PRIMARY KEY (book_id, author_id),
+    FOREIGN KEY (book_id) REFERENCES books (id),
+    FOREIGN KEY (author_id) REFERENCES authors (id)
 );
 
-CREATE TABLE authors
+CREATE TABLE book_categories
 (
-    id   INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    book_id    INT,
+    category_id INT,
+    PRIMARY KEY (book_id, category_id),
+    FOREIGN KEY (book_id) REFERENCES books (id),
+    FOREIGN KEY (category_id) REFERENCES categories (id)
 );
+
 
 INSERT INTO roles (name)
 VALUES ('USER'),
