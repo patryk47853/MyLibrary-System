@@ -9,20 +9,21 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.patrykjava.entity.Book;
+import pl.patrykjava.dto.BookDTO;
 import pl.patrykjava.entity.LibraryCard;
+import pl.patrykjava.repository.BookRepository;
 import pl.patrykjava.repository.LibraryCardRepository;
-import pl.patrykjava.service.LibrarianBookService;
+import pl.patrykjava.service.LibrarianService;
 
 @Controller
 @RequestMapping("/librarian")
 public class LibrarianController {
 
-    private final LibrarianBookService librarianBookService;
+    private final LibrarianService librarianService;
     private final LibraryCardRepository libraryCardRepository;
 
-    public LibrarianController(LibrarianBookService librarianBookService, LibraryCardRepository libraryCardRepository) {
-        this.librarianBookService = librarianBookService;
+    public LibrarianController(LibrarianService librarianService, LibraryCardRepository libraryCardRepository) {
+        this.librarianService = librarianService;
         this.libraryCardRepository = libraryCardRepository;
     }
 
@@ -35,11 +36,11 @@ public class LibrarianController {
     public String showSearchResults(@RequestParam(value = "query", required = false) String query, @RequestParam(value = "page", defaultValue = "0") int page, Model model) {
         Long startIndex = page * 8L;
         int booksPerPage = 8;
-        List<Book> books = new ArrayList<>();
+        List<BookDTO> books = new ArrayList<>();
         int totalRecords = 0;
 
         if (query != null) {
-            books = librarianBookService.searchBooks(query, startIndex);
+            books = librarianService.searchBooks(query, startIndex);
             totalRecords = 60;
         }
 
@@ -53,14 +54,28 @@ public class LibrarianController {
 
     @GetMapping("/check-details")
     public String checkBookDetails(@RequestParam(value = "query") String query, Model model) {
-        Book book = new Book();
+        BookDTO bookDTO = new BookDTO();
 
-        if (query != null) book = librarianBookService.searchBookByGoogleBooksId(query);
+        if (query != null) bookDTO = librarianService.searchBookByGoogleBooksId(query);
 
         model.addAttribute("query", query);
-        model.addAttribute("book", book);
+        model.addAttribute("book", bookDTO);
 
         return "librarian/librarianCheckBookDetails";
+    }
+
+    @PostMapping("/add-book")
+    public String addBook(@RequestParam(value = "query") String query, Model model) {
+        BookDTO bookDTO = new BookDTO();
+
+        if (query != null) bookDTO = librarianService.searchBookByGoogleBooksId(query);
+
+        librarianService.addBookToLibrary(bookDTO);
+
+        model.addAttribute("query", query);
+        model.addAttribute("book", bookDTO);
+
+        return "redirect:/librarian/check-details?query=" + query + "&success";
     }
 
     @GetMapping("/readers")
