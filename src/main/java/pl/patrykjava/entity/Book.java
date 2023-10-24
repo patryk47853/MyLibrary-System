@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,9 +22,13 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @ElementCollection
-    @CollectionTable(name = "authors", joinColumns = @JoinColumn(name = "book_id"))
-    private List<String> authors;
+    @ManyToMany
+    @JoinTable(
+            name = "book_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors;
 
     @Column(name = "cover_image_url")
     private String coverImageUrl;
@@ -44,9 +48,13 @@ public class Book {
     @Column(name = "average_rating")
     private Double averageRating;
 
-    @ElementCollection
-    @CollectionTable(name = "categories", joinColumns = @JoinColumn(name = "book_id"))
-    private List<String> categories;
+    @ManyToMany
+    @JoinTable(
+            name = "book_categories",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
 
     @Column(name = "self_link")
     private String selfLink;

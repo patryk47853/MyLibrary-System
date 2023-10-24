@@ -1,6 +1,7 @@
 package pl.patrykjava.dto;
 
 import java.util.List;
+import java.util.Set;
 
 import lombok.*;
 
@@ -12,14 +13,14 @@ public class BookDTO {
 
     private int id;
     private String title;
-    private List<String> authors;
+    private Set<String> authors;
     private String coverImageUrl;
     private String publisher;
     private String publishedDate;
     private String pageCount;
     private String googleBooksId;
     private Double averageRating;
-    private List<String> categories;
+    private Set<String> categories;
     private String selfLink;
     private String description;
 
