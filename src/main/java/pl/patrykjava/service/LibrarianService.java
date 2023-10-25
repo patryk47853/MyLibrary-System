@@ -2,6 +2,7 @@ package pl.patrykjava.service;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.patrykjava.dto.BookDTO;
+import pl.patrykjava.entity.Book;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface LibrarianService {
     BookDTO searchBookByGoogleBooksId(String googleBooksId);
 
     void addBookToLibrary(BookDTO bookDTO);
+
+    void deleteBookFromLibrary(Book book);
 }

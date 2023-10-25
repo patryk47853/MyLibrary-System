@@ -92,4 +92,9 @@ public class LibrarianServiceImpl implements LibrarianService {
         Book book = bookService.convertBookDtoToBookEntity(bookDTO);
         bookRepository.save(book);
     }
+
+    @Override
+    public void deleteBookFromLibrary(Book book) {
+        bookRepository.delete(book);
+    }
 }

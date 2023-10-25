@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.patrykjava.dto.BookDTO;
+import pl.patrykjava.entity.Book;
 import pl.patrykjava.entity.LibraryCard;
 import pl.patrykjava.repository.BookRepository;
 import pl.patrykjava.repository.LibraryCardRepository;
@@ -21,10 +22,12 @@ public class LibrarianController {
 
     private final LibrarianService librarianService;
     private final LibraryCardRepository libraryCardRepository;
+    private final BookRepository bookRepository;
 
-    public LibrarianController(LibrarianService librarianService, LibraryCardRepository libraryCardRepository) {
+    public LibrarianController(LibrarianService librarianService, LibraryCardRepository libraryCardRepository, BookRepository bookRepository) {
         this.librarianService = librarianService;
         this.libraryCardRepository = libraryCardRepository;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping("/dashboard")
@@ -54,12 +57,15 @@ public class LibrarianController {
 
     @GetMapping("/check-details")
     public String checkBookDetails(@RequestParam(value = "query") String query, Model model) {
-        BookDTO bookDTO = new BookDTO();
+        BookDTO bookDTO = librarianService.searchBookByGoogleBooksId(query);
 
-        if (query != null) bookDTO = librarianService.searchBookByGoogleBooksId(query);
+        Book book = bookRepository.findBookByGoogleBooksId(query);
+        boolean bookExistsInLibrary = book != null;
 
         model.addAttribute("query", query);
         model.addAttribute("book", bookDTO);
+
+        model.addAttribute("bookExistsInLibrary", bookExistsInLibrary);
 
         return "librarian/librarianCheckBookDetails";
     }
@@ -76,6 +82,18 @@ public class LibrarianController {
         model.addAttribute("book", bookDTO);
 
         return "redirect:/librarian/check-details?query=" + query + "&success";
+    }
+
+    @PostMapping("/delete-book")
+    public String deleteBook(@RequestParam(value = "query") String query, Model model) {
+        Book book = bookRepository.findBookByGoogleBooksId(query);
+
+        librarianService.deleteBookFromLibrary(book);
+
+        model.addAttribute("query", query);
+        model.addAttribute("book", book);
+
+        return "redirect:/librarian/check-details?query=" + query + "&deleted";
     }
 
     @GetMapping("/readers")
