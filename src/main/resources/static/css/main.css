@@ -479,3 +479,37 @@ tr:nth-child(even) {
 .details-header {
     padding-left: 35px;
 }
+
+/* Primary Button */
+/* Blue Button */
+.btn-blue {
+    text-shadow: 2px 0px 0px #000, 1.755165px 0.958851px 0px #000, 1.080605px 1.682942px 0px #000, 0.141474px 1.99499px 0px #000, -0.832294px 1.818595px 0px #000, -1.602287px 1.196944px 0px #000, -1.979985px 0.28224px 0 #000, -1.872913px -0.701566px 0px #000, -1.307287px -1.513605px 0px #000, -0.421592px -1.95506px 0px #000, 0.567324px -1.917849px 0px #000, 1.41734px -1.411081px 0px #000, 1.920341px -0.558831px 0px #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    background: linear-gradient(109.6deg, #007bff 11.2%, #0056b3 100.2%);
+    color: white;
+}
+
+.btn-blue input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: inherit;
+}
+
+.btn-blue:hover {
+    background: linear-gradient(109.6deg, #0056b3 11.2%, #007bff 100.2%);
+}
+
+.btn-blue input:hover {
+    background: linear-gradient(109.6deg, #007bff 11.2%, #0056b3 100.2%);
+}
