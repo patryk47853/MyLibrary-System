@@ -12,7 +12,6 @@ public interface LibraryCardRepository extends JpaRepository<LibraryCard, Intege
 
     @Query("SELECT c from LibraryCard c where c.phoneNumber = ?1")
     LibraryCard findByPhoneNumber(String phoneNumber);
-
     Page<LibraryCard> findByPhoneNumber(String phoneNumber, Pageable pageable);
 
 }
