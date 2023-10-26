@@ -7,22 +7,22 @@ import pl.patrykjava.entity.Author;
 import pl.patrykjava.entity.Book;
 import pl.patrykjava.entity.Category;
 import pl.patrykjava.repository.AuthorRepository;
+import pl.patrykjava.repository.BookRepository;
 import pl.patrykjava.repository.CategoryRepository;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class BookServiceImpl implements BookService {
 
     private final AuthorRepository authorRepository;
     private final CategoryRepository categoryRepository;
+    private final BookRepository bookRepository;
 
-    public BookServiceImpl(AuthorRepository authorRepository, CategoryRepository categoryRepository) {
+    public BookServiceImpl(AuthorRepository authorRepository, CategoryRepository categoryRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
         this.categoryRepository = categoryRepository;
+        this.bookRepository = bookRepository;
     }
 
     @Override
@@ -140,5 +140,37 @@ public class BookServiceImpl implements BookService {
         bookDTO.setSelfLink(selfLink != null ? selfLink : "http://localhost:8080/home");
 
         return bookDTO;
+    }
+
+    @Override
+    public List<Book> searchBooks(String query) {
+        List<Book> books = new ArrayList<>();
+
+        if (query != null) books = bookRepository.findBooksByTitleContaining(query);
+
+        return books;
+    }
+
+    @Override
+    public List<Book> getPaginatedBooks(String query, int page, int booksPerPage) {
+        List<Book> allBooks = searchBooks(query);
+        booksPerPage = 6;
+
+        int totalRecords = allBooks.size();
+
+        int startIndex = page * booksPerPage;
+        int endIndex = Math.min(startIndex + booksPerPage, totalRecords);
+
+        if (startIndex > endIndex) {
+            startIndex = Math.max(0, totalRecords - booksPerPage);
+            endIndex = totalRecords;
+        }
+
+        return allBooks.subList(startIndex, endIndex);
+    }
+
+    @Override
+    public int getTotalRecords(String query, int booksPerPage) {
+        return (int) Math.ceil(bookRepository.findBooksByTitleContaining(query).size() / (double) booksPerPage);
     }
 }
