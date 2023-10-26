@@ -48,7 +48,7 @@ public class Book {
     @Column(name = "average_rating")
     private Double averageRating;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_categories",
             joinColumns = @JoinColumn(name = "book_id"),
