@@ -36,7 +36,8 @@ public class LibrarianController {
     }
 
     @GetMapping("/books")
-    public String showSearchResults(@RequestParam(value = "query", required = false) String query, @RequestParam(value = "page", defaultValue = "0") int page, Model model) {
+    public String showSearchResults(@RequestParam(value = "query", required = false) String query,
+                                    @RequestParam(value = "page", defaultValue = "0") int page, Model model) {
         Long startIndex = page * 8L;
         int booksPerPage = 8;
         List<BookDTO> books = new ArrayList<>();
@@ -87,7 +88,6 @@ public class LibrarianController {
     @PostMapping("/delete-book")
     public String deleteBook(@RequestParam(value = "query") String query, Model model) {
         Book book = bookRepository.findBookByGoogleBooksId(query);
-
         librarianService.deleteBookFromLibrary(book);
 
         model.addAttribute("query", query);

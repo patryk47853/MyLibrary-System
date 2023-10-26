@@ -27,7 +27,6 @@ public class HomeController {
 
     @GetMapping("/create-library-card")
     public String createLibraryCard(Model theModel) {
-
         theModel.addAttribute("libraryCard", new LibraryCardDTO());
 
         return "home/createLibraryCard";
@@ -36,7 +35,6 @@ public class HomeController {
     @PostMapping("/process-library-card")
     public String processCreatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                              @AuthenticationPrincipal UserDetails currentUser) {
-
         libraryCardService.createLibraryCard(libraryCardDTO, currentUser);
 
         return "redirect:/create-library-card?success";
@@ -45,7 +43,6 @@ public class HomeController {
     @GetMapping("/library-card")
     public String showLibraryCard(Model theModel,
                                   @AuthenticationPrincipal UserDetails currentUser) {
-
         LibraryCard libraryCard = libraryCardService
                 .getLibraryCardByUsername(currentUser.getUsername());
 
@@ -57,7 +54,6 @@ public class HomeController {
     @GetMapping("/update-library-card")
     public String updateLibraryCard(Model theModel,
                                     @AuthenticationPrincipal UserDetails currentUser) {
-
         LibraryCard libraryCard = libraryCardService
                 .getLibraryCardByUsername(currentUser.getUsername());
 
@@ -69,9 +65,8 @@ public class HomeController {
     @PostMapping("/process-update-library-card")
     public String processUpdatingLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                              @AuthenticationPrincipal UserDetails currentUser) {
-
         User user = userRepository.findByUsername(currentUser.getUsername());
-        libraryCardService.updateLibraryCard(libraryCardDTO, user, libraryCardRepository, userRepository);
+        libraryCardService.updateLibraryCard(libraryCardDTO, user.getId(), libraryCardRepository, userRepository);
 
         return "redirect:/update-library-card?success";
     }

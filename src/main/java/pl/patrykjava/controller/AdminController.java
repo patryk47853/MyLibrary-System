@@ -13,21 +13,24 @@ import pl.patrykjava.entity.User;
 import pl.patrykjava.repository.LibraryCardRepository;
 import pl.patrykjava.repository.UserRepository;
 import pl.patrykjava.service.LibraryCardService;
+import pl.patrykjava.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
     private final LibraryCardRepository libraryCardRepository;
-
     private final LibraryCardService libraryCardService;
-
     private final UserRepository userRepository;
+    private final UserService userService;
 
-    public AdminController(LibraryCardRepository libraryCardRepository, LibraryCardService libraryCardService, UserRepository userRepository) {
+    public AdminController(LibraryCardRepository libraryCardRepository,
+                           LibraryCardService libraryCardService, UserRepository userRepository,
+                           UserService userService) {
         this.libraryCardRepository = libraryCardRepository;
         this.libraryCardService = libraryCardService;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/accounts/{id}")
@@ -49,22 +52,14 @@ public class AdminController {
     @PostMapping("/process-update-user-account/{id}")
     public String processUpdateUserAccount(@ModelAttribute("user") UserDTO userDTO,
                                            @PathVariable("id") int id) {
-
-        User user = userRepository.findUserById(id);
-        user.setUsername(userDTO.getUsername());
-        user.setEmail(userDTO.getEmail());
-
-        userRepository.save(user);
+        userService.updateUser(userDTO, id);
 
         return "redirect:/admin/update-user-account/{id}?success";
     }
 
     @GetMapping("/users/{id}")
     public String showUserProfile(@PathVariable("id") int id, Model theModel) {
-
-        User user = userRepository.findUserById(id);
-        LibraryCard libraryCard = user.getLibraryCard();
-
+        LibraryCard libraryCard = libraryCardService.getLibraryCardById(id);
         theModel.addAttribute("libraryCard", libraryCard);
 
         return "admin/showLibraryCard";
@@ -72,10 +67,7 @@ public class AdminController {
 
     @GetMapping("/update-user-profile/{id}")
     public String updateUserLibraryCard(@PathVariable("id") int id, Model theModel) {
-
-        User user = userRepository.findUserById(id);
-        LibraryCard libraryCard = user.getLibraryCard();
-
+        LibraryCard libraryCard = libraryCardService.getLibraryCardById(id);
         theModel.addAttribute("libraryCard", libraryCard);
 
         return "admin/updateLibraryCardByAdmin";
@@ -84,9 +76,7 @@ public class AdminController {
     @PostMapping("/process-update-library-card/{id}")
     public String processUpdateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
                                            @PathVariable("id") int id) {
-
-        User user = userRepository.findUserById(id);
-        libraryCardService.updateLibraryCard(libraryCardDTO, user, libraryCardRepository, userRepository);
+        libraryCardService.updateLibraryCard(libraryCardDTO, id, libraryCardRepository, userRepository);
 
         return "redirect:/admin/update-user-profile/{id}?success";
     }
