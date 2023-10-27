@@ -267,10 +267,12 @@ button:hover {
 
 .wrapper {
     width: 960px;
+    table-layout: fixed;
     position: absolute;
     transform: translate(-50%, -50%);
     top: calc(50% + 73px);
     left: 50%;
+    overflow-x: auto;
 }
 
 .container {
@@ -429,6 +431,7 @@ form .button input:hover {
 
 table {
     border-collapse: collapse;
+    table-layout: fixed;
     width: 100%;
     color: #333;
     font-size: 14px;
