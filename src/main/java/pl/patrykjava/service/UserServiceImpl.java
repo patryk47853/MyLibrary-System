@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
@@ -41,9 +39,8 @@ public class UserServiceImpl implements UserService {
                 userDTO.getCreatedAt()
         );
 
-        // Add USER role when processing registration
-        Role userRole = roleRepository.findByName("USER");
-        user.addRole(userRole);
+        // Add USER role when processing registration;
+        user.addRole(roleRepository.findByName("USER"));
 
         return userRepository.save(user);
     }
@@ -54,6 +51,8 @@ public class UserServiceImpl implements UserService {
             theModel.addAttribute("error", true);
             return "main/registerUser";
         }
+
+        save(userDTO);
 
         return "redirect:/register?success";
     }
@@ -80,6 +79,15 @@ public class UserServiceImpl implements UserService {
 
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+    }
+
+    @Override
+    public void updateUser(UserDTO userDTO, int id) {
+        User user = userRepository.findUserById(id);
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+
+        userRepository.save(user);
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {

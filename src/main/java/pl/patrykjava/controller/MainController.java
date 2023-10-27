@@ -44,13 +44,6 @@ public class MainController {
 
     @PostMapping("/process_registration")
     public String processRegistration(@ModelAttribute("user") UserDTO userDTO, Model theModel) {
-        if (userService.isUsernameTaken(userDTO.getUsername()) || userService.isEmailTaken(userDTO.getEmail())) {
-            theModel.addAttribute("error", true);
-            return "main/registerUser";
-        }
-
-        userService.save(userDTO);
-
-        return "redirect:/register?success";
+        return userService.validateRegistration(userDTO, theModel);
     }
 }

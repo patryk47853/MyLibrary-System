@@ -11,5 +11,5 @@ public interface UserService extends UserDetailsService {
     boolean isUsernameTaken(String username);
     boolean isEmailTaken(String email);
     String validateRegistration(UserDTO userDTO, Model theModel);
-
+    void updateUser(UserDTO userDTO, int id);
 }
