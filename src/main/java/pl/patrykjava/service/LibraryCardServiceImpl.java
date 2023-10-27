@@ -17,6 +17,8 @@ import pl.patrykjava.repository.RoleRepository;
 import pl.patrykjava.repository.UserRepository;
 import pl.patrykjava.repository.UserToRoleMappingRepository;
 
+import java.util.Optional;
+
 @Service
 public class LibraryCardServiceImpl implements LibraryCardService {
 
@@ -54,6 +56,17 @@ public class LibraryCardServiceImpl implements LibraryCardService {
     }
 
     @Override
+    public LibraryCard getLibraryCardByUserId(int id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isPresent()) {
+            return user.get().getLibraryCard();
+        }
+
+        throw new NotFoundException("User with ID: " + id + " not found.");
+    }
+
+    @Override
     public LibraryCard save(LibraryCardDTO libraryCardDTO) {
 
         // Get the authentication object for the current user
@@ -61,8 +74,7 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         // We should save library card to existing user
-        String username = userDetails.getUsername();
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(userDetails.getUsername());
 
         LibraryCard libraryCard = new LibraryCard(
                 libraryCardDTO.getFirstName(),
@@ -78,12 +90,10 @@ public class LibraryCardServiceImpl implements LibraryCardService {
         user.setLibraryCard(libraryCard);
 
         // Delete 'User' role (ID:1) --> user becomes 'Reader'
-        UserToRoleMapping userToRoleMapping = new UserToRoleMapping(user.getId(), 1);
-        userToRoleMappingRepository.delete(userToRoleMapping);
+        userToRoleMappingRepository.delete(new UserToRoleMapping(user.getId(), 1));
 
         // If user got the library card, he should become 'Reader' and have access to the books
-        Role readerRole = roleRepository.findByName("READER");
-        user.addRole(readerRole);
+        user.addRole(roleRepository.findByName("READER"));
 
         userRepository.save(user);
 
@@ -91,10 +101,10 @@ public class LibraryCardServiceImpl implements LibraryCardService {
     }
 
     public void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO,
-                                  User user,
+                                  int id,
                                   LibraryCardRepository libraryCardRepository,
                                   UserRepository userRepository) {
-
+        User user = userRepository.findUserById(id);
         LibraryCard libraryCard = user.getLibraryCard();
 
         libraryCard.setFirstName(libraryCardDTO.getFirstName());

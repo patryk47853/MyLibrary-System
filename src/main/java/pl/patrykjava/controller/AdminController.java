@@ -59,7 +59,7 @@ public class AdminController {
 
     @GetMapping("/users/{id}")
     public String showUserProfile(@PathVariable("id") int id, Model theModel) {
-        LibraryCard libraryCard = libraryCardService.getLibraryCardById(id);
+        LibraryCard libraryCard = libraryCardService.getLibraryCardByUserId(id);
         theModel.addAttribute("libraryCard", libraryCard);
 
         return "admin/showLibraryCard";
@@ -67,7 +67,7 @@ public class AdminController {
 
     @GetMapping("/update-user-profile/{id}")
     public String updateUserLibraryCard(@PathVariable("id") int id, Model theModel) {
-        LibraryCard libraryCard = libraryCardService.getLibraryCardById(id);
+        LibraryCard libraryCard = libraryCardService.getLibraryCardByUserId(id);
         theModel.addAttribute("libraryCard", libraryCard);
 
         return "admin/updateLibraryCardByAdmin";

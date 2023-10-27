@@ -14,6 +14,7 @@ public interface LibraryCardService extends UserDetailsService {
     LibraryCard save(LibraryCardDTO libraryCardDTO);
     String createLibraryCard(LibraryCardDTO libraryCardDTO, UserDetails currentUser);
     LibraryCard getLibraryCardByUsername(String username);
-    void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO, User user,
+    LibraryCard getLibraryCardByUserId(int id);
+    void updateLibraryCard(@ModelAttribute("libraryCard") LibraryCardDTO libraryCardDTO, int id,
                                   LibraryCardRepository libraryCardRepository, UserRepository userRepository);
 }
