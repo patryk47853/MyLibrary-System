@@ -11,7 +11,7 @@
 <div class="wrapper">
     <div class="container mt-3">
         <div class="search-container">
-            <form action="/librarian/books" method="get">
+            <form action="/books/search" method="get">
                 <input type="text" placeholder="Search books..." name="query" required>
                 <button class="button-search" type="submit">Search</button>
             </form>
@@ -34,10 +34,14 @@
                 <tbody>
                 <tr th:each="book : ${books}">
                     <td th:text="${book.title}"></td>
-                    <td th:text="${book.authors}"></td>
+                    <td>
+                        <span th:each="author : ${book.getAuthors()}" th:text="${author.name}"></span>
+                    </td>
                     <td th:text="${book.publishedDate}"></td>
                     <td th:text="${book.pageCount}"></td>
-                    <td th:text="${book.categories}"></td>
+                    <td>
+                        <span th:each="category : ${book.getCategories()}" th:text="${category.name}"></span>
+                    </td>
                     <td>
                         <div class="add-book-container">
                             <a th:href="${book.selfLink}">
@@ -55,14 +59,15 @@
             </table>
             <div class="pagination">
                 <br>
-                <a th:href="@{/librarian/books(query=${query}, page=0)}">&laquo;</a>
+                <a th:href="@{/books/search(query=${query}, page=0)}">&laquo;</a>
                 <a th:each="p : ${#numbers.sequence(0, totalPages-1)}"
-                   th:href="@{/librarian/books(query=${query}, page=${p})}"
+                   th:href="@{/books/search(query=${query}, page=${p})}"
                    th:text="${p+1}" th:class="${p==currentPage} ? 'active' : ''"></a>
-                <a th:href="@{/librarian/books(query=${query}, page=${totalPages-1})}">&raquo;</a>
+                <a th:href="@{/books/search(query=${query}, page=${totalPages-1})}">&raquo;</a>
             </div>
         </th:block>
     </div>
+</div>
 </div>
 </body>
 </html>
