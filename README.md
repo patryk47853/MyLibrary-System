@@ -47,11 +47,10 @@ MyLibrary System is a fusion of popular technologies and frameworks:
 
 * Java 📚
 * Spring Boot 🏃
-* Hibernate 🗃️
-* JUnit 🧪
 * Spring Security 🔐
-* Project Lombok 🧰
+* Hibernate 🗃️
 * Google Book API 📖
+* JUnit 🧪
 * Maven 🛠️
 
 🎨 Frontend:
